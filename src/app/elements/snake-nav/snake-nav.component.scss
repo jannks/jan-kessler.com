@@ -1,0 +1,17 @@
+#sn-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.sn-block {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.sn-control-buttons {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}

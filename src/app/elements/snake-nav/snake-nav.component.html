@@ -1,0 +1,6 @@
+<div id="sn-container">
+    <div class="sn-block" *ngFor="let block of blocks" [ngStyle]="block.style"></div>
+</div>
+<div class="sn-control-buttons">
+    <button class="icon-btn" (click)="reset()"><img src="assets/icons/refresh-icon.png" /></button>
+</div>

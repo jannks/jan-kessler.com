@@ -47,7 +47,8 @@
         "template-no-negated-async": true,
         "use-lifecycle-interface": true,
         "use-pipe-transform-interface": true,
-        "indent": [true, "spaces", 4]
+        "indent": [true, "spaces", 4],
+        "variable-name": false
     },
     "rulesDirectory": ["codelyzer"]
 }

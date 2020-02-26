@@ -1,0 +1,9 @@
+<div class="container">
+    <app-snake-nav
+        [defaultBlocks]="snakeBlocks"
+        [snakeHead]="snakeHead"
+        [centerBlocks]="true"
+        (eaten)="reduceBlockSize($event)"
+        (resetSize)="reset()"
+    ></app-snake-nav>
+</div>
