@@ -1,6 +1,8 @@
 ---
+import Header from '../components/Header.astro';
+
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -8,43 +10,150 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+        <title>{title}</title>
+    </head>
+    <body>
+        <Header />
+        <slot />
+    </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+    /* spacing */
+    :root {
+        --container-padding: 2rem;
+    }
+
+    /* colors */
+    :root[data-theme='light'] {
+        --background: white;
+        --text-color: black;
+    }
+    :root[data-theme='dark'] {
+        --background: black;
+        --text-color: white;
+    }
+
+    /* font sizes */
+
+    :root {
+        --display2: 20rem;
+        --display1: 4rem;
+        --headline: 2rem;
+        --subheadline: 1.5rem;
+        --body: 1rem;
+        --small: 0.875rem;
+    }
+
+    /* responsive */
+
+    @media (max-width: 992px) {
+        :root {
+            --display2: 12rem;
+            --display1: 2.5rem;
+            --headline: 1.75rem;
+            --subheadline: 1.25rem;
+            --body: 0.9rem;
+            --small: 0.8rem;
+            --container-padding: 1rem;
+        }
+    }
+
+    @font-face {
+        font-family: 'JetBrains Mono';
+        src:
+            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
+                format('woff2 supports variations'),
+            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
+                format('woff2-variations');
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: normal;
+    }
+
+    /* general */
+    html {
+        font-family: 'JetBrains Mono', Arial, sans-serif;
+        background: var(--background);
+        color: var(--text-color);
+    }
+
+    body {
+        margin: 0;
+        font-size: var(--body);
+    }
+
+    a {
+        color: var(--text-color);
+        text-decoration: underline;
+        font-size: var(--body);
+    }
+
+    a:visited {
+        color: var(--text-color);
+    }
+
+    .show-dark {
+        display: none;
+    }
+
+    .dark .show-light {
+        display: none;
+    }
+
+    .dark .show-dark {
+        display: block;
+    }
+
+    /* animations */
+
+    .fade-in {
+        opacity: 0;
+        transition: opacity 1s ease-in;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+    }
+
+    .slide-in {
+        transform: translateX(100%);
+        opacity: 0;
+        transition:
+            transform 1s ease-out,
+            opacity 1s ease-in;
+    }
+
+    .slide-in.visible {
+        transform: translateX(0);
+        opacity: 1;
+    }
 </style>
+
+<script>
+    const processIntro = () => {
+        document.removeEventListener('visibilitychange', processIntro);
+
+        const fadeInElements = document.querySelectorAll('.fade-in, .slide-in');
+
+        fadeInElements.forEach((element: Element) => {
+            element.classList.add('visible');
+        });
+    };
+
+    // Initial check when the page loads
+    if (document.hidden) {
+        document.addEventListener('visibilitychange', processIntro);
+    } else {
+        processIntro();
+    }
+</script>

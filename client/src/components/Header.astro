@@ -1,0 +1,51 @@
+---
+import ThemeIcon from './ThemeIcon.astro';
+---
+
+<header>
+    <div>
+        <menu id="menu" class="fade-in">
+            <a
+                class="menu-item"
+                href="https://github.com/jannks1"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img
+                    class="show-light"
+                    width="30"
+                    src="icons/github-mark.svg"
+                    alt="Github"
+                />
+                <img
+                    class="show-dark"
+                    width="30"
+                    src="icons/github-mark-white.svg"
+                    alt="Github"
+                />
+            </a>
+            <ThemeIcon />
+        </menu>
+    </div>
+</header>
+
+<style is:global>
+    :root {
+        --header-height: 80px;
+    }
+
+    header {
+        height: var(--header-height);
+        display: flex;
+        justify-content: end;
+        padding: var(--container-padding);
+        box-sizing: border-box;
+    }
+
+    #menu {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 1rem;
+    }
+</style>

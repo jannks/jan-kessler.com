@@ -1,0 +1,149 @@
+<div class="container">
+    <div class="name-container">
+        <div class="name-group">
+            <div class="fade-in intro-text">J</div>
+            <div class="slide-in small-intro-text">an</div>
+        </div>
+        <div id="intro-line" class="intro-line"></div>
+        <div class="name-group">
+            <div class="fade-in intro-text">K</div>
+            <div class="slide-in small-intro-text">essler</div>
+        </div>
+    </div>
+
+    <div class="job-info-container">
+        <div class="fade-in job-info">
+            <div>SOFTWARE ENGINEER</div>
+            <div>
+                LEAD DEVELOPER @ <a href="https://ah-oh.de" target="_blank"
+                    >Ah&Oh</a
+                >
+            </div>
+        </div>
+        <div id="selected-work" class="fade-in">
+            <div>SELECTED WORK</div>
+            <div>
+                <span class="material-icons">keyboard_arrow_down </span>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* general */
+    .container {
+        height: calc(100vh - var(--header-height));
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: var(--container-padding);
+    }
+
+    /* name */
+
+    .name-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .name-container {
+            flex-direction: column;
+        }
+    }
+
+    .name-group {
+        display: flex;
+        align-items: end;
+    }
+
+    .intro-text {
+        font-size: var(--display2);
+        font-weight: 700;
+        line-height: 1;
+        font-weight: 500;
+    }
+
+    .small-intro-text {
+        font-size: var(--display1);
+    }
+
+    .intro-line {
+        width: 0;
+        height: 6px;
+        background-color: var(--text-color);
+        transition: width 1s ease-in-out;
+        margin-left: 10px;
+        align-self: center;
+    }
+
+    .intro-line.visible {
+        width: var(--display1);
+    }
+
+    /* job info */
+
+    .job-info {
+        font-size: var(--body);
+        text-transform: uppercase;
+        text-align: center;
+        padding-bottom: 2rem;
+    }
+
+    .job-info-container {
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #selected-work {
+        font-size: var(--subheadline);
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #selected-work.animate {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    const processIntro = () => {
+        document.removeEventListener('visibilitychange', processIntro);
+
+        const introLineElement = document.getElementById('intro-line');
+        const selectedWorkElement = document.getElementById('selected-work');
+
+        // Animate the intro-line after fadeInElements are visible
+        setTimeout(() => {
+            introLineElement?.classList.add('visible');
+        }, 1000);
+
+        setTimeout(() => {
+            selectedWorkElement?.classList.add('animate');
+        }, 2000);
+    };
+
+    // Initial check when the page loads
+    if (document.hidden) {
+        document.addEventListener('visibilitychange', processIntro);
+    } else {
+        processIntro();
+    }
+</script>
