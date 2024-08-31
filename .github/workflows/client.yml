@@ -34,3 +34,17 @@ jobs:
                   context: '{{defaultContext}}:client'
                   push: true
                   tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+    deploy:
+        needs: docker
+        name: deploy image
+        runs-on: ubuntu-latest
+        steps:
+            - name: install ssh keys
+              uses: fifsky/ssh-action@master
+              with:
+                  command: 'cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit'
+                  host: ${{ secrets.HOST }}
+                  user: root
+                  key: ${{ secrets.PRIVATE_KEY }}
+                  args: -tt
