@@ -39,34 +39,37 @@
     }
 </style>
 
-<script is:inline>
-    window.theme ??= new (class {
-        _storageKey = 'theme';
-        _store =
+<script>
+    const theme = new (class {
+        private readonly storageKey = 'theme';
+        private readonly store =
             typeof localStorage !== 'undefined'
                 ? localStorage
                 : { getItem: () => null, setItem: () => {} };
 
-        _systemTheme;
+        private systemTheme: 'light' | 'dark';
 
         get theme() {
-            return this._store.getItem(this._storageKey) || defaultTheme;
+            return (
+                (this.store.getItem(this.storageKey) as 'light' | 'dark') ||
+                'dark'
+            );
         }
 
         constructor() {
             const mediaMatcher = window.matchMedia(
                 '(prefers-color-scheme: light)',
             );
-            this._systemTheme = mediaMatcher.matches ? 'light' : 'dark';
+            this.systemTheme = mediaMatcher.matches ? 'light' : 'dark';
 
             mediaMatcher.addEventListener('change', (event) => {
-                this._systemTheme = event.matches ? 'light' : 'dark';
+                this.systemTheme = event.matches ? 'light' : 'dark';
             });
 
             this.applyTheme();
         }
 
-        applyTheme() {
+        private applyTheme() {
             const resolvedTheme = this.theme;
             document.documentElement.dataset.theme = resolvedTheme;
             document.documentElement.style.colorScheme = resolvedTheme;
@@ -78,8 +81,8 @@
             }
         }
 
-        saveTheme(theme) {
-            this._store.setItem(this._storageKey, theme);
+        private saveTheme(theme: 'light' | 'dark') {
+            this.store.setItem(this.storageKey, theme);
             this.applyTheme();
         }
 
@@ -95,5 +98,5 @@
 
     document
         .getElementById('themeToggle')
-        .addEventListener('click', handleToggleClick);
+        ?.addEventListener('click', handleToggleClick);
 </script>

@@ -14,7 +14,24 @@ const { title } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="favicon/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="favicon/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="favicon/site.webmanifest" />
         <meta name="generator" content={Astro.generator} />
         <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -140,20 +157,26 @@ const { title } = Astro.props;
 </style>
 
 <script>
-    const processIntro = () => {
-        document.removeEventListener('visibilitychange', processIntro);
+    document.addEventListener('DOMContentLoaded', () => {
+        const processIntro = () => {
+            document.removeEventListener('visibilitychange', processIntro);
 
-        const fadeInElements = document.querySelectorAll('.fade-in, .slide-in');
+            const fadeInElements = document.querySelectorAll(
+                '.fade-in, .slide-in',
+            );
 
-        fadeInElements.forEach((element: Element) => {
-            element.classList.add('visible');
-        });
-    };
+            setTimeout(() => {
+                fadeInElements.forEach((element: Element) => {
+                    element.classList.add('visible');
+                });
+            }, 200);
+        };
 
-    // Initial check when the page loads
-    if (document.hidden) {
-        document.addEventListener('visibilitychange', processIntro);
-    } else {
-        processIntro();
-    }
+        // Initial check when the page loads
+        if (document.hidden) {
+            document.addEventListener('visibilitychange', processIntro);
+        } else {
+            processIntro();
+        }
+    });
 </script>
