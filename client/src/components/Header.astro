@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import ThemeIcon from './ThemeIcon.astro';
 ---
 
@@ -6,21 +7,15 @@ import ThemeIcon from './ThemeIcon.astro';
     <div>
         <menu id="menu" class="fade-in">
             <a
-                class="menu-item"
                 href="https://github.com/jannks"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <img
-                    class="show-light"
-                    width="30"
-                    src="icons/github-mark.svg"
-                    alt="Github"
-                />
-                <img
-                    class="show-dark"
-                    width="30"
-                    src="icons/github-mark-white.svg"
+                <Icon
+                    width={30}
+                    height={29.4}
+                    lightPath="icons/github-mark.svg"
+                    darkPath="icons/github-mark-white.svg"
                     alt="Github"
                 />
             </a>

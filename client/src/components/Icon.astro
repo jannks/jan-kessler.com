@@ -1,0 +1,34 @@
+---
+interface Props {
+    width: number;
+    height: number;
+    lightPath: string;
+    darkPath: string;
+    alt: string;
+}
+
+const { width, height, lightPath, darkPath, alt } = Astro.props;
+---
+
+<span class="icon">
+    <img
+        class="show-light"
+        width={width}
+        height={height}
+        src={lightPath}
+        alt={alt}
+    />
+    <img
+        class="show-dark"
+        width={width}
+        height={height}
+        src={darkPath}
+        alt={alt}
+    />
+</span>
+
+<style>
+    .icon {
+        display: inline-block;
+    }
+</style>
