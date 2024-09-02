@@ -21,11 +21,10 @@
             </div>
         </div>
         <div id="selected-work" class="fade-in">
-            <div>WORK IN PROGRESS</div>
-            <!-- TODO replay if ready <div>SELECTED WORK</div>
+            <div>SELECTED WORK</div>
             <div>
                 <span class="material-icons">keyboard_arrow_down </span>
-            </div> -->
+            </div>
         </div>
     </div>
 </div>
@@ -36,6 +35,11 @@
         overflow: hidden;
         box-sizing: border-box;
         padding: var(--container-padding);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'JetBrains Mono Auto', Arial, sans-serif;
     }
 
     /* name */
@@ -150,4 +154,12 @@
             processIntro();
         }
     });
+    const scrollToSelectedWork = () => {
+        document
+            .getElementById('cards')
+            ?.scrollIntoView({ behavior: 'smooth' });
+    };
+    document
+        .getElementById('selected-work')
+        ?.addEventListener('click', scrollToSelectedWork);
 </script>

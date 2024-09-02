@@ -31,7 +31,7 @@ import ThemeIcon from './ThemeIcon.astro';
 
 <style is:global>
     :root {
-        --header-height: 80px;
+        --header-height: calc(var(--container-padding) * 2 + 35px);
     }
 
     header {
@@ -47,5 +47,6 @@ import ThemeIcon from './ThemeIcon.astro';
         justify-content: end;
         align-items: center;
         gap: 1rem;
+        margin: 0;
     }
 </style>

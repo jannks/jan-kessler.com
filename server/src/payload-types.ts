@@ -49,6 +49,17 @@ export interface Project {
   textColor: string;
   backgroundColor: string;
   image?: string | Media | null;
+  role: string;
+  technologies: (
+    | 'Angular'
+    | 'Node.js'
+    | 'NestJs'
+    | 'MongoDB'
+    | 'Docker'
+    | 'Kubernetes'
+    | 'iOS (Swift)'
+    | 'Android (Kotlin)'
+  )[];
   updatedAt: string;
   createdAt: string;
 }

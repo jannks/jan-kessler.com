@@ -53,6 +53,51 @@ const Projects: CollectionConfig = {
                 mimeType: { contains: 'image' },
             },
         },
+        {
+            name: 'role',
+            type: 'text',
+            required: true,
+        },
+        {
+            name: 'technologies',
+            type: 'select',
+            hasMany: true,
+            required: true,
+            options: [
+                {
+                    label: 'Angular',
+                    value: 'Angular',
+                },
+                {
+                    label: 'Node.js',
+                    value: 'Node.js',
+                },
+                {
+                    label: 'NestJs',
+                    value: 'NestJs',
+                },
+                {
+                    label: 'MongoDB',
+                    value: 'MongoDB',
+                },
+                {
+                    label: 'Docker',
+                    value: 'Docker',
+                },
+                {
+                    label: 'Kubernetes',
+                    value: 'Kubernetes',
+                },
+                {
+                    label: 'iOS (Swift)',
+                    value: 'iOS (Swift)',
+                },
+                {
+                    label: 'Android (Kotlin)',
+                    value: 'Android (Kotlin)',
+                },
+            ],
+        },
     ],
 };
 

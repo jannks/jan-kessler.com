@@ -1,0 +1,50 @@
+---
+import type { Project } from '@/payload/payload-types';
+import { serialize } from '../utils/slate-text.converter';
+
+interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+const picture = typeof project.image === 'object' ? project.image : null;
+---
+
+<div class="card-body">
+    <div class="card-content">
+        <div class="project-image">
+            {picture && <img src={picture.url} alt={project.title} />}
+        </div>
+        <div class="project-info">
+            <h2>{project.title}</h2>
+            <div set:html={serialize(project.description)} />
+        </div>
+    </div>
+</div>
+
+<style
+    define:vars={{
+        backgroundColor: project.backgroundColor,
+        color: project.textColor,
+    }}
+>
+    .card-body {
+        background-color: var(--backgroundColor);
+        color: var(--color);
+        box-sizing: border-box;
+        padding: 30px;
+        border-radius: 50px;
+        box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+        height: var(--cardHeight);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s;
+    }
+
+    .card-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+</style>
