@@ -50,7 +50,10 @@ const Projects: CollectionConfig = {
             type: 'upload',
             relationTo: 'media',
             filterOptions: {
-                mimeType: { contains: 'image' },
+                or: [
+                    { mimeType: { contains: 'image' } },
+                    { mimeType: { contains: 'video' } },
+                ],
             },
         },
         {
