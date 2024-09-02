@@ -3,7 +3,8 @@ import type { Media } from '../types/payload-types';
 interface Props {
     media: Media;
 }
-const mediaPrefix = import.meta.env.MEDIA_PREFIX ?? '';
+const mediaPrefix =
+    import.meta.env.MEDIA_PREFIX ?? process.env.MEDIA_PREFIX ?? '';
 const { media } = Astro.props;
 ---
 
