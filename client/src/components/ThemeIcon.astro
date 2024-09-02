@@ -52,6 +52,7 @@
         get theme() {
             return (
                 (this.store.getItem(this.storageKey) as 'light' | 'dark') ||
+                this.systemTheme ||
                 'dark'
             );
         }
