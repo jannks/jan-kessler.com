@@ -12,6 +12,7 @@
     "dependencies": {
         "@astrojs/check": "^0.9.3",
         "@astrojs/node": "^8.3.3",
+        "@astrojs/sitemap": "^3.1.6",
         "astro": "^4.14.5",
         "escape-html": "^1.0.3",
         "slate": "^0.103.0",
