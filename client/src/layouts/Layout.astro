@@ -69,6 +69,12 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
                 />
             )
         }
+
+        <script
+            defer=""
+            data-api="/api/event"
+            data-domain="jan-kessler.com"
+            src="/js/script.js"></script>
     </head>
     <body>
         <Header />
