@@ -17,6 +17,11 @@ export default buildConfig({
     },
     editor: slateEditor({}),
     collections: [Users, Projects, Media],
+    upload: {
+        limits: {
+            fileSize: 10000000, // 10MB, written in bytes
+        },
+    },
     typescript: {
         outputFile: path.resolve(__dirname, 'payload-types.ts'),
     },
