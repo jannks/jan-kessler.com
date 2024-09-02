@@ -2,6 +2,7 @@
 import type { Project } from '@/payload/payload-types';
 import { serialize } from '../utils/slate-text.converter';
 import Media from './Media.astro';
+import Chip from './Chip.astro';
 
 interface Props {
     project: Project;
@@ -17,8 +18,18 @@ const media = typeof project.media === 'object' ? project.media : null;
             {media && <Media media={media} />}
         </div>
         <div class="project-info">
-            <h2>{project.title}</h2>
+            <a href={project.projectUrl} target="_blank">
+                <h2>{project.title}</h2>
+            </a>
+            <div class="company-name">
+                <a href={project.copmanyUrl} target="_blank">
+                    {project.copmanyName}
+                </a>
+            </div>
             <div set:html={serialize(project.description)} />
+            <div class="project-tags">
+                {project.technologies.map((tag) => <Chip label={tag} />)}
+            </div>
         </div>
     </div>
 </div>
@@ -43,9 +54,31 @@ const media = typeof project.media === 'object' ? project.media : null;
         transition: all 0.5s;
     }
 
+    a {
+        text-decoration: none;
+        color: var(--color);
+    }
+
     .card-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
+    }
+
+    .company-name {
+        font-size: var(--small);
+    }
+
+    .project-tags {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    @media (max-width: 992px) {
+        .card-content {
+            grid-template-columns: 1fr;
+        }
     }
 </style>

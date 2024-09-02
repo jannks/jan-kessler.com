@@ -1,0 +1,19 @@
+---
+interface Props {
+    label: string;
+}
+const { label } = Astro.props;
+---
+
+<div class="chip">{label}</div>
+
+<style>
+    .chip {
+        background-color: black;
+        color: white;
+        border-radius: 9999px; /* This creates round corners */
+        padding: 0.5rem 1rem;
+        display: inline-block;
+        font-size: var(--small);
+    }
+</style>
