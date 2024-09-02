@@ -48,7 +48,7 @@ export interface Project {
   copmanyUrl: string;
   textColor: string;
   backgroundColor: string;
-  image?: string | Media | null;
+  media?: string | Media | null;
   role: string;
   technologies: (
     | 'Angular'

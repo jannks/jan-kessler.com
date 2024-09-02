@@ -1,0 +1,50 @@
+---
+import type { Media } from '@/payload/payload-types';
+
+interface Props {
+    media: Media;
+}
+const mediaPrefix = import.meta.env.MEDIA_PREFIX ?? '';
+const { media } = Astro.props;
+---
+
+{
+    media.mimeType?.includes('image') ? (
+        <picture>
+            {media.sizes?.desktop && (
+                <source
+                    srcset={`${mediaPrefix}${media.sizes.desktop.url}`}
+                    media="(min-width: 1200px)"
+                />
+            )}
+            {media.sizes?.tablet && (
+                <source
+                    srcset={`${mediaPrefix}${media.sizes.tablet.url}`}
+                    media="(min-width: 768px)"
+                />
+            )}
+            {media.sizes?.card && (
+                <source
+                    srcset={`${mediaPrefix}${media.sizes.card.url}`}
+                    media="(min-width: 480px)"
+                />
+            )}
+            {media.sizes?.thumbnail && (
+                <source
+                    srcset={`${mediaPrefix}${media.sizes.thumbnail.url}`}
+                    media="(max-width: 479px)"
+                />
+            )}
+            <img
+                src={`${mediaPrefix}${media.url}`}
+                alt={media.alt}
+                width={media.width}
+                height={media.height}
+                decoding="async"
+                loading="lazy"
+            />
+        </picture>
+    ) : (
+        <video src={`${mediaPrefix}${media.url}`} />
+    )
+}

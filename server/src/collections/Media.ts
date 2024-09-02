@@ -14,28 +14,40 @@ export const Media: CollectionConfig = {
                 width: 400,
                 height: undefined,
                 position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                },
             },
             {
                 name: 'card',
                 width: 768,
                 height: undefined,
                 position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                },
             },
             {
                 name: 'tablet',
                 width: 1024,
                 height: undefined,
                 position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                },
             },
             {
                 name: 'desktop',
                 width: 1920,
                 height: undefined,
                 position: 'centre',
+                formatOptions: {
+                    format: 'webp',
+                },
             },
         ],
         adminThumbnail: 'thumbnail',
-        mimeTypes: ['image/*'],
+        mimeTypes: ['image/*', 'video/*'],
     },
     fields: [
         {

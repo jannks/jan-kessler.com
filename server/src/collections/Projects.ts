@@ -46,7 +46,7 @@ const Projects: CollectionConfig = {
             required: true,
         },
         {
-            name: 'image',
+            name: 'media',
             type: 'upload',
             relationTo: 'media',
             filterOptions: {

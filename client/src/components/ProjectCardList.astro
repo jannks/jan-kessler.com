@@ -4,7 +4,7 @@ import ProjectCard from './ProjectCard.astro';
 
 const apiUrl = import.meta.env.API_URL;
 const projects: { docs: Project[] } = await fetch(
-    `${apiUrl}/api/projects`,
+    `${apiUrl}/api/projects?depth=1`,
 ).then((res) => res.json());
 ---
 
