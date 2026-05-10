@@ -1,47 +1,84 @@
 ---
-import Icon from './Icon.astro';
+import LucideIcon from './LucideIcon.astro';
 import ThemeIcon from './ThemeIcon.astro';
 ---
 
 <header>
-    <div>
-        <menu id="menu" class="fade-in">
-            <a
-                href="https://github.com/jannks"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <Icon
-                    width={30}
-                    height={29.4}
-                    lightPath="icons/github-mark.svg"
-                    darkPath="icons/github-mark-white.svg"
-                    alt="Github"
-                />
+    <nav class="container">
+        <div class="pill">
+            <a href="/" class="logo" aria-label="Jan Kessler">
+                JK<span class="logo-dot">.</span>
             </a>
-            <ThemeIcon />
-        </menu>
-    </div>
+            <div class="actions">
+                <a
+                    href="https://github.com/jannks"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="icon-button"
+                    aria-label="GitHub"
+                >
+                    <LucideIcon name="github" size={22} />
+                </a>
+                <ThemeIcon />
+            </div>
+        </div>
+    </nav>
 </header>
 
-<style is:global>
-    :root {
-        --header-height: calc(var(--container-padding) * 2 + 35px);
-    }
-
+<style>
     header {
-        height: var(--header-height);
-        display: flex;
-        justify-content: end;
-        padding: var(--container-padding);
-        box-sizing: border-box;
+        position: fixed;
+        top: 1.5rem;
+        left: 0;
+        right: 0;
+        z-index: 50;
     }
 
-    #menu {
+    .pill {
         display: flex;
-        justify-content: end;
         align-items: center;
-        gap: 1rem;
-        margin: 0;
+        justify-content: space-between;
+        background: var(--surface);
+        border: 4px solid var(--border);
+        border-radius: 9999px;
+        padding: 0.625rem 1.25rem;
+        box-shadow: 8px 8px 0 0 var(--shadow);
+    }
+
+    .logo {
+        font-weight: 900;
+        font-size: 1.5rem;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+    }
+
+    .logo-dot {
+        color: var(--accent);
+        font-size: 1.875rem;
+        line-height: 1;
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: var(--ink);
+        color: var(--ink-inverse);
+        border: 2px solid var(--border);
+        border-radius: 9999px;
+        transition: background 0.2s ease;
+    }
+
+    .icon-button:hover {
+        background: var(--accent);
+        color: var(--ink);
     }
 </style>

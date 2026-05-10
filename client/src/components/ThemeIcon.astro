@@ -2,14 +2,18 @@
 
 ---
 
-<button id="themeToggle" aria-label="toggle color scheme">
-    <svg width="30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<button id="themeToggle" aria-label="Toggle color scheme">
+    <svg
+        width="22"
+        height="22"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+    >
         <path
             class="sun"
             fill-rule="evenodd"
             d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"
         ></path>
-
         <path
             class="moon"
             fill-rule="evenodd"
@@ -20,22 +24,38 @@
 
 <style>
     #themeToggle {
-        border: 0;
-        background: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 9999px;
         cursor: pointer;
+        padding: 0;
+        transition: background 0.2s ease;
     }
+
+    #themeToggle:hover {
+        background: var(--accent-soft);
+    }
+
     .sun {
-        fill: black;
+        fill: var(--ink);
     }
+
     .moon {
         fill: transparent;
     }
 
-    :global(.dark) .sun {
+    :global([data-theme='dark']) .sun {
         fill: transparent;
     }
-    :global(.dark) .moon {
-        fill: white;
+
+    :global([data-theme='dark']) .moon {
+        fill: var(--ink);
     }
 </style>
 
@@ -53,18 +73,18 @@
             return (
                 (this.store.getItem(this.storageKey) as 'light' | 'dark') ||
                 this.systemTheme ||
-                'dark'
+                'light'
             );
         }
 
         constructor() {
             const mediaMatcher = window.matchMedia(
-                '(prefers-color-scheme: light)',
+                '(prefers-color-scheme: dark)',
             );
-            this.systemTheme = mediaMatcher.matches ? 'light' : 'dark';
+            this.systemTheme = mediaMatcher.matches ? 'dark' : 'light';
 
             mediaMatcher.addEventListener('change', (event) => {
-                this.systemTheme = event.matches ? 'light' : 'dark';
+                this.systemTheme = event.matches ? 'dark' : 'light';
             });
 
             this.applyTheme();
@@ -74,12 +94,10 @@
             const resolvedTheme = this.theme;
             document.documentElement.dataset.theme = resolvedTheme;
             document.documentElement.style.colorScheme = resolvedTheme;
-
-            if (this.theme === 'light') {
-                document.documentElement.classList.remove('dark');
-            } else {
-                document.documentElement.classList.add('dark');
-            }
+            document.documentElement.classList.toggle(
+                'dark',
+                resolvedTheme === 'dark',
+            );
         }
 
         private saveTheme(theme: 'light' | 'dark') {
@@ -92,12 +110,7 @@
         }
     })();
 
-    const handleToggleClick = () => {
-        console.log(theme.toggleTheme);
-        theme.toggleTheme();
-    };
-
     document
         .getElementById('themeToggle')
-        ?.addEventListener('click', handleToggleClick);
+        ?.addEventListener('click', () => theme.toggleTheme());
 </script>

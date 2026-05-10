@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../types/payload-types';
+import LucideIcon from './LucideIcon.astro';
 import ProjectCard from './ProjectCard.astro';
 
 const apiUrl = import.meta.env.API_URL ?? process.env.API_URL;
@@ -8,46 +9,72 @@ const projects: { docs: Project[] } = await fetch(
 ).then((res) => res.json());
 ---
 
-<div class="container">
-    <ul id="cards">
-        {
-            projects.docs.map((project, index) => (
-                <li class="card" style={{ '--index': index + 1 }}>
-                    <ProjectCard project={project} />
-                </li>
-            ))
-        }
-    </ul>
-</div>
+<section id="cards" class="section">
+    <div class="container">
+        <div class="section-header">
+            <LucideIcon name="code-2" size={36} class="section-icon" />
+            <h2 class="section-title">Selected Work</h2>
+        </div>
 
-<style define:vars={{ cards: projects.docs.length }}>
-    :root {
-        --cardHeight: calc(100vh - var(--cardTopPadding) * 2);
-        --cardTopPadding: var(--container-padding);
-        --cardMargin: calc(1vw * var(--cards));
+        <ul class="cards-grid">
+            {
+                projects.docs.map((project, index) => (
+                    <li class="card-item">
+                        <ProjectCard project={project} index={index} />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</section>
+
+<style>
+    .section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
 
-    .container {
-        padding: var(--container-padding);
-        box-sizing: border-box;
-        width: 100%;
-        margin: 0 auto;
+    .section-header {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--surface);
+        padding: 1rem 2rem;
+        border: 4px solid var(--border);
+        border-radius: 9999px;
+        box-shadow: 8px 8px 0 0 var(--shadow);
+        transform: rotate(-2deg);
+        margin-bottom: 4rem;
     }
 
-    #cards {
+    .section-title {
+        font-size: clamp(1.75rem, 4vw, 3rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin: 0;
+    }
+
+    :global(.section-icon) {
+        color: var(--accent);
+    }
+
+    .cards-grid {
         list-style: none;
-        padding-left: 0;
+        padding: 0;
+        margin: 0;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(var(--cards), var(--cardHeight));
-        gap: var(--cardMargin);
-        padding-bottom: calc(var(--cards) * var(--cardTopPadding));
-        margin-bottom: var(--cardMargin);
+        gap: 2.5rem;
     }
 
-    .card {
-        position: sticky;
-        top: 0;
-        padding-top: calc(var(--index) * var(--cardTopPadding));
+    @media (min-width: 768px) {
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .card-item {
+        display: flex;
     }
 </style>

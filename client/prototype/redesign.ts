@@ -63,7 +63,7 @@ const projects = [
 
 export default function App() {
     const kusamaPattern = {
-        backgroundColor: '#facc15', // Tailwind yellow-400
+        backgroundColor: '#F7B500', // Tailwind yellow-400
         backgroundImage:
             'radial-gradient(#000 15%, transparent 16%), radial-gradient(#000 15%, transparent 16%)',
         backgroundSize: '60px 60px',

@@ -1,178 +1,274 @@
 ---
-import Icon from './Icon.astro';
+import LucideIcon from './LucideIcon.astro';
 ---
 
-<div class="container">
-    <div class="name-container">
-        <div class="name-group">
-            <div class="fade-in intro-text">J</div>
-            <div class="slide-in small-intro-text">an</div>
-        </div>
-        <div id="intro-line" class="intro-line"></div>
-        <div class="name-group">
-            <div class="fade-in intro-text">K</div>
-            <div class="slide-in small-intro-text">essler</div>
-        </div>
-    </div>
+<header class="hero">
+    <div class="container">
+        <div class="hero-card">
+            <img
+                src="/portrait.webp"
+                alt="Portrait of Jan Kessler"
+                width="400"
+                height="400"
+                class="deco deco-portrait"
+            />
+            <div class="deco deco-dark" aria-hidden="true"></div>
+            <div class="deco deco-yellow" aria-hidden="true"></div>
 
-    <div class="job-info-container">
-        <div class="fade-in job-info">
-            <div>SOFTWARE ENGINEER</div>
-            <div>
-                LEAD DEVELOPER @ <a href="https://ah-oh.de" target="_blank"
-                    >Ah&Oh</a
-                >
-            </div>
-        </div>
-        <div id="selected-work" class="fade-in">
-            <div>SELECTED WORK</div>
-            <div>
-                <Icon
-                    width={18}
-                    height={18}
-                    lightPath="icons/down-arrow.svg"
-                    darkPath="icons/down-arrow-white.svg"
-                    alt="Go to selected work"
-                />
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Open for new projects
+                </div>
+
+                <h1 class="hero-title">
+                    Hi, I'm<br />
+                    Jan Kessler.
+                </h1>
+
+                <h2 class="hero-role">Software Engineer</h2>
+
+                <p class="hero-job">
+                    <LucideIcon name="briefcase" size={22} />
+                    Lead Developer @ Ah&amp;Oh
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#cards" class="btn btn-primary">
+                        See projects
+                        <LucideIcon name="chevron-right" size={22} />
+                    </a>
+                    <a
+                        href="mailto:hello@jan-kessler.com"
+                        class="btn btn-secondary"
+                    >
+                        <LucideIcon name="mail" size={22} />
+                        Contact
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</header>
+
 <style>
-    /* general */
-    .container {
-        height: calc(100vh - var(--header-height));
+    .hero {
+        padding-top: 10rem;
+        padding-bottom: 5rem;
+    }
+
+    @media (min-width: 768px) {
+        .hero {
+            padding-top: 12rem;
+            padding-bottom: 8rem;
+        }
+    }
+
+    .hero-card {
+        position: relative;
+        background: var(--surface);
+        color: var(--ink);
+        border: 4px solid var(--border);
+        border-radius: 3rem;
+        padding: 2rem;
+        box-shadow: 16px 16px 0 0 var(--shadow);
         overflow: hidden;
-        box-sizing: border-box;
-        padding: var(--container-padding);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: 'JetBrains Mono Auto', Arial, sans-serif;
     }
 
-    /* name */
-
-    .name-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    @media (max-width: 768px) {
-        .container {
-            justify-content: start;
-        }
-        .name-container {
-            flex-direction: column;
+    @media (min-width: 768px) {
+        .hero-card {
+            padding: 4rem;
         }
     }
 
-    .name-group {
-        display: flex;
-        align-items: end;
+    /* decorative kusama dots */
+    .deco {
+        position: absolute;
+        border: 4px solid var(--border);
+        border-radius: 9999px;
+        pointer-events: none;
     }
 
-    .intro-text {
-        font-size: var(--display2);
+    .deco-portrait {
+        top: -2rem;
+        right: -2rem;
+        width: 11rem;
+        height: 11rem;
+        background: var(--accent);
+        object-fit: cover;
+        object-position: center 25%;
+    }
+
+    @media (min-width: 768px) {
+        .deco-portrait {
+            top: -3rem;
+            right: -3rem;
+            width: 18rem;
+            height: 18rem;
+        }
+    }
+
+    .deco-dark {
+        bottom: -2.5rem;
+        left: -2.5rem;
+        width: 10rem;
+        height: 10rem;
+        background: var(--ink);
+        background-image:
+            radial-gradient(var(--ink-inverse) 20%, transparent 21%),
+            radial-gradient(var(--ink-inverse) 20%, transparent 21%);
+        background-size: 24px 24px;
+        background-position:
+            0 0,
+            12px 12px;
+    }
+
+    .deco-yellow {
+        top: 50%;
+        right: 2.5rem;
+        width: 3rem;
+        height: 3rem;
+        background: var(--accent-soft);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--ink);
+        color: var(--ink-inverse);
         font-weight: 700;
-        line-height: 1;
-        font-weight: 500;
+        font-size: 0.875rem;
+        border: 2px solid var(--border);
+        border-radius: 9999px;
+        margin-bottom: 2rem;
+        transform: rotate(-2deg);
+        box-shadow: 4px 4px 0 0 var(--accent);
     }
 
-    .small-intro-text {
-        font-size: var(--display1);
+    .badge-dot {
+        width: 0.75rem;
+        height: 0.75rem;
+        background: var(--accent);
+        border-radius: 9999px;
+        animation: bounce 1s infinite;
     }
 
-    .intro-line {
-        width: 0;
-        height: 6px;
-        background-color: var(--text-color);
-        transition: width 1s ease-in-out;
-        margin-left: 10px;
-        align-self: center;
-    }
-
-    .intro-line.visible {
-        width: var(--display1);
-    }
-
-    /* job info */
-
-    .job-info {
-        font-size: var(--body);
-        text-transform: uppercase;
-        text-align: center;
-        padding-bottom: 2rem;
-    }
-
-    .job-info-container {
-        padding-top: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    #selected-work {
-        font-size: var(--subheadline);
-        font-weight: 600;
-        text-transform: uppercase;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    #selected-work.animate {
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% {
-            opacity: 1;
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
         }
         50% {
-            opacity: 0.5;
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
         }
-        100% {
-            opacity: 1;
-        }
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 10vw, 6rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        margin: 0 0 1.5rem;
+    }
+
+    .hero-role {
+        display: inline-block;
+        font-size: clamp(1.875rem, 5vw, 3rem);
+        font-weight: 900;
+        background: var(--accent-soft);
+        color: #000;
+        padding: 0.5rem 1.5rem;
+        border: 4px solid #000;
+        border-radius: 2rem;
+        transform: rotate(1deg);
+        box-shadow: 8px 8px 0 0 #000;
+        margin: 0 0 2.5rem;
+    }
+
+    .hero-job {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: var(--accent);
+        color: #ffffff;
+        padding: 0.75rem 1.25rem;
+        border: 4px solid var(--border);
+        border-radius: 1rem;
+        box-shadow: 6px 6px 0 0 var(--shadow);
+        transform: rotate(-1deg);
+        margin: 0 0 3rem;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.25rem;
+        font-weight: 900;
+        padding: 1rem 2rem;
+        border: 4px solid var(--border);
+        border-radius: 9999px;
+        cursor: pointer;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease,
+            color 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 8px 8px 0 0 var(--shadow);
+    }
+
+    .btn-primary {
+        background: var(--ink);
+        color: var(--ink-inverse);
+    }
+
+    .btn-primary:hover {
+        background: var(--accent);
+        color: #ffffff;
+    }
+
+    .btn-secondary {
+        background: var(--surface);
+        color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+        background: var(--accent-soft);
+        color: #000;
     }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const processIntro = () => {
-            document.removeEventListener('visibilitychange', processIntro);
-
-            const introLineElement = document.getElementById('intro-line');
-            const selectedWorkElement =
-                document.getElementById('selected-work');
-
-            // Animate the intro-line after fadeInElements are visible
-            setTimeout(() => {
-                introLineElement?.classList.add('visible');
-            }, 1200);
-
-            setTimeout(() => {
-                selectedWorkElement?.classList.add('animate');
-            }, 2200);
-        };
-
-        // Initial check when the page loads
-        if (document.hidden) {
-            document.addEventListener('visibilitychange', processIntro);
-        } else {
-            processIntro();
-        }
-    });
-    const scrollToSelectedWork = () => {
+    const scrollToProjects = (event: Event) => {
+        event.preventDefault();
         document
             .getElementById('cards')
             ?.scrollIntoView({ behavior: 'smooth' });
     };
+
     document
-        .getElementById('selected-work')
-        ?.addEventListener('click', scrollToSelectedWork);
+        .querySelector('a[href="#cards"]')
+        ?.addEventListener('click', scrollToProjects);
 </script>

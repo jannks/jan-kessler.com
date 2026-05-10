@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
     title: string;
@@ -70,6 +71,26 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
             )
         }
 
+        <script is:inline>
+            (() => {
+                const stored = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia(
+                    '(prefers-color-scheme: dark)',
+                ).matches;
+                const theme =
+                    stored === 'light' || stored === 'dark'
+                        ? stored
+                        : prefersDark
+                          ? 'dark'
+                          : 'light';
+                document.documentElement.dataset.theme = theme;
+                document.documentElement.style.colorScheme = theme;
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                }
+            })();
+        </script>
+
         <script
             is:inline
             defer=""
@@ -80,109 +101,101 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
     <body>
         <Header />
         <slot />
+        <Footer />
     </body>
 </html>
+
 <style is:global>
-    /* spacing */
+    /* layout */
     :root {
-        --container-padding: 2rem;
+        --container-padding: 1.5rem;
+        --max-width: 64rem;
     }
 
-    /* colors */
+    /* palette — light (yellow Kusama) */
     :root[data-theme='light'] {
-        --background: white;
-        --text-color: black;
+        --background: #F7B500; /* yellow-400 */
+        --dot-color: #000;
+        --surface: #ffffff;
+        --ink: #000000;
+        --ink-inverse: #ffffff;
+        --border: #000000;
+        --shadow: #000000;
+        --accent: #E60012; /* red-500 */
+        --accent-soft: #F7B500; /* yellow-400 */
     }
+
+    /* palette — dark (black with yellow dots) */
     :root[data-theme='dark'] {
-        --background: black;
-        --text-color: white;
+        --background: #000000;
+        --dot-color: #F7B500;
+        --surface: #0a0a0a;
+        --ink: #ffffff;
+        --ink-inverse: #000000;
+        --border: #ffffff;
+        --shadow: #ffffff;
+        --accent: #E60012;
+        --accent-soft: #F7B500;
     }
 
-    /* font sizes */
-
+    /* type scale */
     :root {
-        --display2: 20rem;
-        --display1: 4rem;
-        --headline: 2rem;
+        --display: clamp(3rem, 8vw, 6rem);
+        --headline: clamp(1.75rem, 4vw, 3rem);
         --subheadline: 1.5rem;
-        --body: 1rem;
-        --small: 0.875rem;
+        --body: 1.125rem;
+        --small: 0.8125rem;
     }
 
-    /* responsive */
-
-    @media (max-width: 992px) {
-        :root {
-            --display2: 12rem;
-            --display1: 2.5rem;
-            --headline: 1.75rem;
-            --subheadline: 1.25rem;
-            --body: 0.9rem;
-            --small: 0.8rem;
-            --container-padding: 1rem;
-        }
+    /* selection */
+    ::selection {
+        background: var(--accent);
+        color: #ffffff;
     }
 
-    @font-face {
-        font-family: 'JetBrains Mono';
-        src:
-            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
-                format('woff2 supports variations'),
-            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
-                format('woff2-variations');
-        font-weight: 400 700;
-        font-display: swap;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'JetBrains Mono Auto';
-        src:
-            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
-                format('woff2 supports variations'),
-            url('/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.woff2')
-                format('woff2-variations');
-        font-weight: 400 700;
-        font-display: auto;
-        font-style: normal;
-    }
-
-    /* general */
+    /* document */
     html {
-        font-family: 'JetBrains Mono', Arial, sans-serif;
-        background: var(--background);
-        color: var(--text-color);
+        font-family:
+            system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+            Arial, sans-serif;
+        background-color: var(--background);
+        background-image:
+            radial-gradient(var(--dot-color) 15%, transparent 16%),
+            radial-gradient(var(--dot-color) 15%, transparent 16%);
+        background-size: 60px 60px;
+        background-position:
+            0 0,
+            30px 30px;
+        background-attachment: fixed;
+        color: var(--ink);
     }
 
     body {
         margin: 0;
         font-size: var(--body);
+        font-weight: 600;
+        overflow-x: hidden;
+        padding-bottom: 5rem;
     }
 
     a {
-        color: var(--text-color);
-        text-decoration: underline;
-        font-size: var(--body);
+        color: inherit;
+        text-decoration: none;
     }
 
-    a:visited {
-        color: var(--text-color);
+    a:hover {
+        color: inherit;
     }
 
-    .show-dark {
-        display: none;
-    }
-
-    .dark .show-light {
-        display: none;
-    }
-
-    .dark .show-dark {
-        display: block;
+    /* shared utilities */
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
     }
 
     /* animations */
-
     .fade-in {
         opacity: 0;
         transition: opacity 1s ease-in;
@@ -211,18 +224,17 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
         const processIntro = () => {
             document.removeEventListener('visibilitychange', processIntro);
 
-            const fadeInElements = document.querySelectorAll(
+            const animatedElements = document.querySelectorAll(
                 '.fade-in, .slide-in',
             );
 
             setTimeout(() => {
-                fadeInElements.forEach((element: Element) => {
+                animatedElements.forEach((element: Element) => {
                     element.classList.add('visible');
                 });
             }, 200);
         };
 
-        // Initial check when the page loads
         if (document.hidden) {
             document.addEventListener('visibilitychange', processIntro);
         } else {
