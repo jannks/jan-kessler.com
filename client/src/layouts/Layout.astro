@@ -41,6 +41,17 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
 
         <link rel="sitemap" href="/sitemap-index.xml" />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
         <!-- SEO meta tags -->
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -109,42 +120,65 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
     /* layout */
     :root {
         --container-padding: 1.5rem;
-        --max-width: 64rem;
+        --max-width: 72rem;
+
+        /* card palette — cycled across project cards */
+        --card-1: #ffe066; /* soft yellow */
+        --card-2: #ffb4a2; /* peach */
+        --card-3: #c7b8ea; /* lavender */
+        --card-4: #b8e0d2; /* mint */
+
+        /* surface for project cards always uses dark ink for legibility */
+        --card-ink: #1a1612;
     }
 
-    /* palette — light (yellow Kusama) */
+    /* palette — light (warm cream + coral accent) */
     :root[data-theme='light'] {
-        --background: #F7B500; /* yellow-400 */
-        --dot-color: #000;
+        --background: #fff8e7;
         --surface: #ffffff;
-        --ink: #000000;
-        --ink-inverse: #ffffff;
-        --border: #000000;
-        --shadow: #000000;
-        --accent: #E60012; /* red-500 */
-        --accent-soft: #F7B500; /* yellow-400 */
+        --ink: #1a1612;
+        --ink-muted: #5a514a;
+        --ink-inverse: #fff8e7;
+        --border: #1a1612;
+        --shadow: #1a1612;
+        --accent: #ff5252;
+        --accent-soft: #ffe066;
     }
 
-    /* palette — dark (black with yellow dots) */
+    /* palette — dark (warm dark + brighter coral) */
     :root[data-theme='dark'] {
-        --background: #000000;
-        --dot-color: #F7B500;
-        --surface: #0a0a0a;
-        --ink: #ffffff;
-        --ink-inverse: #000000;
-        --border: #ffffff;
-        --shadow: #ffffff;
-        --accent: #E60012;
-        --accent-soft: #F7B500;
+        --background: #1a1612;
+        --surface: #2a2520;
+        --ink: #fff8e7;
+        --ink-muted: #b8aea2;
+        --ink-inverse: #1a1612;
+        --border: #fff8e7;
+        --shadow: #fff8e7;
+        --accent: #ff7b7b;
+        --accent-soft: #ffe066;
     }
 
     /* type scale */
     :root {
-        --display: clamp(3rem, 8vw, 6rem);
-        --headline: clamp(1.75rem, 4vw, 3rem);
-        --subheadline: 1.5rem;
-        --body: 1.125rem;
+        --display: clamp(4rem, 14vw, 10rem);
+        --headline: clamp(2rem, 5vw, 3.5rem);
+        --subheadline: clamp(1.25rem, 2.5vw, 1.75rem);
+        --body: 1.0625rem;
         --small: 0.8125rem;
+
+        --font-display: 'Archivo Black', 'Space Grotesk', system-ui, sans-serif;
+        --font-sans:
+            'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', sans-serif;
+        --font-mono:
+            'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+            monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
     }
 
     /* selection */
@@ -155,36 +189,23 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
 
     /* document */
     html {
-        font-family:
-            system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
-            Arial, sans-serif;
+        font-family: var(--font-sans);
         background-color: var(--background);
-        background-image:
-            radial-gradient(var(--dot-color) 15%, transparent 16%),
-            radial-gradient(var(--dot-color) 15%, transparent 16%);
-        background-size: 60px 60px;
-        background-position:
-            0 0,
-            30px 30px;
-        background-attachment: fixed;
         color: var(--ink);
     }
 
     body {
         margin: 0;
         font-size: var(--body);
-        font-weight: 600;
+        font-weight: 500;
+        line-height: 1.55;
         overflow-x: hidden;
-        padding-bottom: 5rem;
+        padding-bottom: 4rem;
     }
 
     a {
         color: inherit;
         text-decoration: none;
-    }
-
-    a:hover {
-        color: inherit;
     }
 
     /* shared utilities */
@@ -195,10 +216,64 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
         padding-right: var(--container-padding);
     }
 
+    .mono {
+        font-family: var(--font-mono);
+        letter-spacing: 0.04em;
+    }
+
+    /* hand-drawn marker highlight — paint behind the word */
+    .marker {
+        background-image: linear-gradient(
+            104deg,
+            transparent 0.9%,
+            var(--marker-color, var(--accent-soft)) 2.4%,
+            var(--marker-color, var(--accent-soft)) 5.8%,
+            color-mix(in srgb, var(--marker-color, var(--accent-soft)) 88%, transparent) 93%,
+            color-mix(in srgb, var(--marker-color, var(--accent-soft)) 65%, transparent) 96%,
+            transparent 98%
+        );
+        background-repeat: no-repeat;
+        background-position: 0 88%;
+        background-size: 100% 60%;
+        padding: 0 0.15em;
+        color: var(--card-ink);
+    }
+
+    /* washi tape strip */
+    .tape {
+        position: absolute;
+        width: 5rem;
+        height: 1.25rem;
+        background: var(--accent-soft);
+        border: 2px solid var(--border);
+        opacity: 0.92;
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
+    }
+
+    /* rubber stamp sticker */
+    .stamp {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.3rem 0.55rem;
+        border: 2px solid currentColor;
+        border-radius: 0.25rem;
+        color: var(--accent);
+    }
+
+    /* sketchy nudges */
+    .tilt-l { transform: rotate(-1.5deg); }
+    .tilt-r { transform: rotate(1.5deg); }
+    .tilt-l-sm { transform: rotate(-0.8deg); }
+    .tilt-r-sm { transform: rotate(0.8deg); }
+
     /* animations */
     .fade-in {
         opacity: 0;
-        transition: opacity 1s ease-in;
+        transition: opacity 0.7s ease-in;
     }
 
     .fade-in.visible {
@@ -206,11 +281,11 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
     }
 
     .slide-in {
-        transform: translateX(100%);
+        transform: translateX(2rem);
         opacity: 0;
         transition:
-            transform 1s ease-out,
-            opacity 1s ease-in;
+            transform 0.7s ease-out,
+            opacity 0.7s ease-in;
     }
 
     .slide-in.visible {
@@ -232,7 +307,7 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
                 animatedElements.forEach((element: Element) => {
                     element.classList.add('visible');
                 });
-            }, 200);
+            }, 150);
         };
 
         if (document.hidden) {

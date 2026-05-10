@@ -2,261 +2,436 @@
 import LucideIcon from './LucideIcon.astro';
 ---
 
-<header class="hero">
-    <div class="container">
-        <div class="hero-card">
-            <img
-                src="/portrait.webp"
-                alt="Portrait of Jan Kessler"
-                width="400"
-                height="400"
-                class="deco deco-portrait"
-            />
-            <div class="deco deco-dark" aria-hidden="true"></div>
-            <div class="deco deco-yellow" aria-hidden="true"></div>
+<section class="intro">
+    <div class="container intro-grid">
+        <div class="status-row">
+            <span class="status fade-in">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="mono">Open for projects · No agencies pls</span>
+            </span>
+        </div>
 
-            <div class="hero-content">
-                <div class="badge">
-                    <span class="badge-dot"></span>
-                    Open for new projects
-                </div>
+        <div class="name fade-in">
+            <div class="name-row">
+                <span class="initial">J</span><span class="rest slide-in">an</span>
+            </div>
 
-                <h1 class="hero-title">
-                    Hi, I'm<br />
-                    Jan Kessler.
-                </h1>
+            <svg
+                class="squiggle"
+                viewBox="0 0 200 18"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+            >
+                <path
+                    d="M 2 9 Q 14 1 28 9 T 56 9 T 84 9 T 112 9 T 140 9 T 168 9 T 196 9"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
 
-                <h2 class="hero-role">Software Engineer</h2>
-
-                <p class="hero-job">
-                    <LucideIcon name="briefcase" size={22} />
-                    Lead Developer @ Ah&amp;Oh
-                </p>
-
-                <div class="hero-actions">
-                    <a href="#cards" class="btn btn-primary">
-                        See projects
-                        <LucideIcon name="chevron-right" size={22} />
-                    </a>
-                    <a
-                        href="mailto:hello@jan-kessler.com"
-                        class="btn btn-secondary"
-                    >
-                        <LucideIcon name="mail" size={22} />
-                        Contact
-                    </a>
-                </div>
+            <div class="name-row">
+                <span class="initial">K</span><span class="rest slide-in">essler</span>
             </div>
         </div>
+
+        <div class="middle">
+            <div class="polaroid fade-in" aria-hidden="false">
+                <span class="tape tape-tl" aria-hidden="true"></span>
+                <span class="tape tape-br" aria-hidden="true"></span>
+                <img
+                    src="/portrait.webp"
+                    alt="Portrait of Jan Kessler"
+                    width="320"
+                    height="320"
+                    loading="eager"
+                />
+                <span class="polaroid-caption mono">that's me, hi 👋</span>
+            </div>
+
+            <div class="meta fade-in">
+                <p class="meta-line">
+                    <span class="mono meta-kicker">Currently</span>
+                    <span class="meta-text">
+                        <span class="marker">Software Engineer</span> &amp;
+                        Lead Dev <span class="at">@</span>
+                        <a
+                            href="https://ah-oh.de"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="employer-link"
+                        >
+                            Ah&amp;Oh
+                        </a>
+                    </span>
+                </p>
+
+                <p class="meta-line meta-line--secondary">
+                    <span class="mono meta-kicker">Aside</span>
+                    <span class="meta-text">
+                        Building things since 2014, mostly in TypeScript,
+                        sometimes in Swift when the mood strikes.
+                    </span>
+                </p>
+
+                <a href="/freelance" class="freelance-sticker">
+                    <span class="freelance-sticker-burst" aria-hidden="true"></span>
+                    <span class="freelance-sticker-inner">
+                        <LucideIcon name="sparkles" size={16} />
+                        <span class="mono">Hire me on the side</span>
+                        <LucideIcon name="arrow-up-right" size={16} />
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <a href="#cards" class="scroll-hint fade-in" aria-label="Scroll to selected work">
+            <span class="scroll-handwritten">scroll if you're nosy</span>
+            <svg
+                class="scroll-arrow"
+                viewBox="0 0 60 40"
+                aria-hidden="true"
+            >
+                <path
+                    d="M 4 6 Q 18 2 30 14 T 50 22"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                ></path>
+                <path
+                    d="M 50 22 L 44 16 M 50 22 L 44 28"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                ></path>
+            </svg>
+        </a>
     </div>
-</header>
+</section>
 
 <style>
-    .hero {
-        padding-top: 10rem;
-        padding-bottom: 5rem;
+    .intro {
+        min-height: 100vh;
+        padding-top: 6.5rem;
+        padding-bottom: 3rem;
+        display: flex;
+        align-items: center;
     }
 
     @media (min-width: 768px) {
-        .hero {
-            padding-top: 12rem;
-            padding-bottom: 8rem;
+        .intro {
+            padding-top: 8.5rem;
+            padding-bottom: 5rem;
         }
     }
 
-    .hero-card {
+    .intro-grid {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
         position: relative;
+    }
+
+    /* status badge — slightly tilted */
+    .status-row {
+        display: flex;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.875rem;
         background: var(--surface);
         color: var(--ink);
-        border: 4px solid var(--border);
-        border-radius: 3rem;
-        padding: 2rem;
-        box-shadow: 16px 16px 0 0 var(--shadow);
-        overflow: hidden;
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        box-shadow: 3px 3px 0 0 var(--shadow);
+        transform: rotate(-1.5deg);
+    }
+
+    .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        background: var(--accent);
+        animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* name with squiggle */
+    .name {
+        font-family: var(--font-display);
+        font-size: var(--display);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+    }
+
+    .name-row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.05em;
+    }
+
+    .name-row:nth-child(3) {
+        margin-left: 0.6em;
+        transform: rotate(-1deg);
+        transform-origin: left top;
+    }
+
+    .squiggle {
+        display: block;
+        width: 8rem;
+        height: 0.9rem;
+        margin: 0.35em 0 0.35em 1.5em;
+        color: var(--accent);
     }
 
     @media (min-width: 768px) {
-        .hero-card {
-            padding: 4rem;
+        .squiggle {
+            width: 14rem;
+            height: 1.2rem;
         }
     }
 
-    /* decorative kusama dots */
-    .deco {
-        position: absolute;
-        border: 4px solid var(--border);
-        border-radius: 9999px;
-        pointer-events: none;
+    /* middle: polaroid + meta */
+    .middle {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
     }
 
-    .deco-portrait {
-        top: -2rem;
-        right: -2rem;
-        width: 11rem;
-        height: 11rem;
-        background: var(--accent);
+    @media (min-width: 768px) {
+        .middle {
+            flex-direction: row;
+            align-items: center;
+            gap: 2.5rem;
+        }
+    }
+
+    .polaroid {
+        position: relative;
+        background: #ffffff;
+        border: 2px solid var(--border);
+        padding: 0.625rem 0.625rem 2rem;
+        box-shadow: 5px 5px 0 0 var(--shadow);
+        transform: rotate(-3deg);
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+
+    @media (min-width: 768px) {
+        .polaroid {
+            transform: rotate(-3.5deg);
+        }
+    }
+
+    .polaroid img {
+        display: block;
+        width: 9rem;
+        height: 9rem;
         object-fit: cover;
         object-position: center 25%;
+        background: var(--card-2);
     }
 
     @media (min-width: 768px) {
-        .deco-portrait {
-            top: -3rem;
-            right: -3rem;
-            width: 18rem;
-            height: 18rem;
+        .polaroid img {
+            width: 11rem;
+            height: 11rem;
         }
     }
 
-    .deco-dark {
-        bottom: -2.5rem;
-        left: -2.5rem;
-        width: 10rem;
-        height: 10rem;
-        background: var(--ink);
-        background-image:
-            radial-gradient(var(--ink-inverse) 20%, transparent 21%),
-            radial-gradient(var(--ink-inverse) 20%, transparent 21%);
-        background-size: 24px 24px;
-        background-position:
-            0 0,
-            12px 12px;
+    .polaroid-caption {
+        position: absolute;
+        left: 0.625rem;
+        right: 0.625rem;
+        bottom: 0.5rem;
+        text-align: center;
+        font-size: 0.6875rem;
+        text-transform: lowercase;
+        color: #1a1612;
+        letter-spacing: 0;
     }
 
-    .deco-yellow {
-        top: 50%;
-        right: 2.5rem;
-        width: 3rem;
-        height: 3rem;
-        background: var(--accent-soft);
+    .tape {
+        position: absolute;
+        width: 4rem;
+        height: 1.1rem;
+        background: var(--card-1);
+        border: 2px solid var(--border);
+        opacity: 0.94;
     }
 
-    .hero-content {
+    .tape-tl {
+        top: -0.6rem;
+        left: -0.9rem;
+        transform: rotate(-22deg);
+    }
+
+    .tape-br {
+        bottom: -0.6rem;
+        right: -0.9rem;
+        transform: rotate(-18deg);
+        background: var(--card-3);
+    }
+
+    /* meta */
+    .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 32rem;
+    }
+
+    .meta-line {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: var(--ink);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .meta-line--secondary .meta-text {
+        color: var(--ink-muted);
+        font-weight: 500;
+    }
+
+    .meta-kicker {
+        font-size: 0.6875rem;
+        color: var(--ink-muted);
+        text-transform: uppercase;
+    }
+
+    .meta-text {
+        font-weight: 600;
+    }
+
+    .at {
+        color: var(--ink-muted);
+        font-weight: 500;
+    }
+
+    .employer-link {
         position: relative;
-        z-index: 1;
+        color: var(--ink);
+        font-weight: 700;
     }
 
-    .badge {
+    .employer-link::after {
+        content: '';
+        position: absolute;
+        left: -0.05em;
+        right: -0.05em;
+        bottom: -0.15em;
+        height: 0.5em;
+        background: var(--accent);
+        z-index: -1;
+        transform: skew(-8deg);
+        transition: transform 0.2s ease;
+    }
+
+    .employer-link:hover::after {
+        transform: skew(-8deg) scaleY(1.6);
+    }
+
+    /* freelance sticker */
+    .freelance-sticker {
+        position: relative;
+        align-self: flex-start;
+        margin-top: 0.25rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+        transform: rotate(2deg);
+        transition: transform 0.2s ease;
+    }
+
+    .freelance-sticker:hover {
+        transform: rotate(0deg) scale(1.04);
+    }
+
+    .freelance-sticker-burst {
+        position: absolute;
+        inset: -0.4rem;
+        background: var(--accent);
+        border: 2px solid var(--border);
+        clip-path: polygon(
+            0% 35%, 8% 25%, 12% 38%, 22% 22%, 30% 38%, 40% 18%,
+            48% 36%, 58% 20%, 66% 38%, 76% 22%, 86% 36%, 100% 28%,
+            96% 50%, 100% 70%, 88% 64%, 80% 80%, 70% 64%, 60% 82%,
+            50% 64%, 40% 82%, 30% 64%, 20% 80%, 10% 64%, 0% 72%,
+            4% 50%
+        );
+    }
+
+    .freelance-sticker-inner {
+        position: relative;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         padding: 0.5rem 1rem;
-        background: var(--ink);
-        color: var(--ink-inverse);
-        font-weight: 700;
-        font-size: 0.875rem;
+        background: var(--card-1);
+        color: var(--card-ink);
         border: 2px solid var(--border);
-        border-radius: 9999px;
-        margin-bottom: 2rem;
-        transform: rotate(-2deg);
-        box-shadow: 4px 4px 0 0 var(--accent);
-    }
-
-    .badge-dot {
-        width: 0.75rem;
-        height: 0.75rem;
-        background: var(--accent);
-        border-radius: 9999px;
-        animation: bounce 1s infinite;
-    }
-
-    @keyframes bounce {
-        0%,
-        100% {
-            transform: translateY(-25%);
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-            transform: translateY(0);
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
-    }
-
-    .hero-title {
-        font-size: clamp(3rem, 10vw, 6rem);
-        font-weight: 900;
-        line-height: 1;
-        letter-spacing: -0.04em;
+        border-radius: 0.4rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        margin: 0 0 1.5rem;
+        font-weight: 500;
+        box-shadow: 3px 3px 0 0 var(--shadow);
     }
 
-    .hero-role {
-        display: inline-block;
-        font-size: clamp(1.875rem, 5vw, 3rem);
-        font-weight: 900;
-        background: var(--accent-soft);
-        color: #000;
-        padding: 0.5rem 1.5rem;
-        border: 4px solid #000;
-        border-radius: 2rem;
-        transform: rotate(1deg);
-        box-shadow: 8px 8px 0 0 #000;
-        margin: 0 0 2.5rem;
-    }
-
-    .hero-job {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.25rem;
-        font-weight: 700;
-        background: var(--accent);
-        color: #ffffff;
-        padding: 0.75rem 1.25rem;
-        border: 4px solid var(--border);
-        border-radius: 1rem;
-        box-shadow: 6px 6px 0 0 var(--shadow);
-        transform: rotate(-1deg);
-        margin: 0 0 3rem;
-    }
-
-    .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-    }
-
-    .btn {
+    /* scroll hint — handwritten + curved arrow */
+    .scroll-hint {
+        align-self: flex-end;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        font-size: 1.25rem;
-        font-weight: 900;
-        padding: 1rem 2rem;
-        border: 4px solid var(--border);
-        border-radius: 9999px;
-        cursor: pointer;
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            background 0.2s ease,
-            color 0.2s ease;
-    }
-
-    .btn:hover {
-        transform: scale(1.05);
-        box-shadow: 8px 8px 0 0 var(--shadow);
-    }
-
-    .btn-primary {
-        background: var(--ink);
-        color: var(--ink-inverse);
-    }
-
-    .btn-primary:hover {
-        background: var(--accent);
-        color: #ffffff;
-    }
-
-    .btn-secondary {
-        background: var(--surface);
+        margin-top: 1rem;
         color: var(--ink);
+        cursor: pointer;
+        transition: transform 0.2s ease;
     }
 
-    .btn-secondary:hover {
-        background: var(--accent-soft);
-        color: #000;
+    .scroll-hint:hover {
+        transform: translateY(2px);
+    }
+
+    .scroll-handwritten {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        text-transform: lowercase;
+        letter-spacing: 0;
+        font-weight: 400;
+        transform: rotate(-2deg);
+    }
+
+    .scroll-arrow {
+        width: 3rem;
+        height: 2rem;
+        color: var(--accent);
+        transform: rotate(8deg);
+        transition: transform 0.2s ease;
+    }
+
+    .scroll-hint:hover .scroll-arrow {
+        transform: rotate(8deg) translate(2px, 2px);
     }
 </style>
 

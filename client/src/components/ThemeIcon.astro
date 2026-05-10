@@ -27,19 +27,24 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2.25rem;
+        height: 2.25rem;
         background: var(--surface);
         color: var(--ink);
         border: 2px solid var(--border);
-        border-radius: 9999px;
+        border-radius: 0.5rem;
         cursor: pointer;
         padding: 0;
-        transition: background 0.2s ease;
+        transition:
+            background 0.15s ease,
+            color 0.15s ease,
+            transform 0.15s ease;
     }
 
     #themeToggle:hover {
         background: var(--accent-soft);
+        color: var(--card-ink);
+        transform: translate(-1px, -1px);
     }
 
     .sun {

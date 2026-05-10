@@ -1,0 +1,603 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Chip from '../components/Chip.astro';
+import LucideIcon from '../components/LucideIcon.astro';
+
+const services = [
+    {
+        title: 'SaaS, soup-to-nuts',
+        description:
+            "Web apps from \"napkin sketch\" to \"production with paying users\". API design, DB modeling, frontend, the boring deploy stuff.",
+    },
+    {
+        title: 'Tech Lead, on loan',
+        description:
+            'Architecture reviews, mentoring, and the occasional "why is this broken" deep-dive for teams that need a senior brain part-time.',
+    },
+    {
+        title: 'Backend that scales',
+        description:
+            'NestJS / Node.js, REST + GraphQL, MongoDB schemas that won\'t haunt you in two years.',
+    },
+    {
+        title: 'Frontend, refactored',
+        description:
+            'Angular and React rescues. Performance work. Design systems that survive contact with reality.',
+    },
+];
+
+const stack = [
+    'TypeScript',
+    'Angular',
+    'React',
+    'NestJS',
+    'Node.js',
+    'MongoDB',
+    'Docker',
+    'Kubernetes',
+    'iOS (Swift)',
+    'Android (Kotlin)',
+];
+
+const cardColors = ['var(--card-1)', 'var(--card-2)', 'var(--card-3)', 'var(--card-4)'];
+---
+
+<Layout
+    title="Freelance — Jan Kessler"
+    description="Freelance Software Engineer based in Villingen-Schwenningen — SaaS development, tech lead on demand, backend and frontend engineering."
+    image="/logo.png"
+>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <span class="tag mono">
+                        <span class="tag-dot" aria-hidden="true"></span>
+                        Taking on freelance work · Q3 + Q4
+                    </span>
+
+                    <h1 class="hero-title">
+                        Freelance<br />
+                        <span class="title-script">Software</span><br />
+                        Engineer<span class="title-dot">.</span>
+                    </h1>
+
+                    <p class="hero-pitch">
+                        I help product teams design, build, and ship
+                        <span class="marker">ambitious web apps</span>
+                        — from first prototype to "running in prod with real users".
+                        <em>Mostly the kind that pay rent.</em>
+                    </p>
+
+                    <div class="hero-actions">
+                        <a
+                            href="mailto:hello@jan-kessler.com"
+                            class="btn btn-primary"
+                        >
+                            <LucideIcon name="mail" size={20} />
+                            Say hi
+                        </a>
+                        <a href="/" class="btn btn-secondary">
+                            See my work
+                            <LucideIcon name="chevron-right" size={20} />
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="hero-aside" aria-hidden="false">
+                    <div class="stamp-large">
+                        <span>Available</span>
+                        <span class="stamp-large-sub">now-ish</span>
+                    </div>
+                    <div class="note-card">
+                        <p class="note-line">
+                            <span class="mono note-kicker">Based in</span>
+                            Villingen-Schwenningen, Germany
+                        </p>
+                        <p class="note-line">
+                            <span class="mono note-kicker">Working with</span>
+                            Teams in EU + remote
+                        </p>
+                        <p class="note-line">
+                            <span class="mono note-kicker">Reply time</span>
+                            ~2 days, sometimes faster
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="container">
+                <header class="block-header">
+                    <span class="section-tag mono">
+                        <LucideIcon name="sparkles" size={16} />
+                        <span>Chapter 01</span>
+                    </span>
+                    <h2 class="block-title">
+                        Things I'll
+                        <span class="marker">happily</span>
+                        take on
+                    </h2>
+                </header>
+
+                <ul class="services-grid">
+                    {
+                        services.map((service, index) => (
+                            <li
+                                class="service-card"
+                                style={`--card-bg: ${cardColors[index % cardColors.length]}; --service-tilt: ${index % 2 === 0 ? -0.8 : 0.8}deg;`}
+                            >
+                                <span class="service-number mono">
+                                    №{String(index + 1).padStart(2, '0')}
+                                </span>
+                                <h3 class="service-title">{service.title}</h3>
+                                <p class="service-description">
+                                    {service.description}
+                                </p>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="container">
+                <header class="block-header">
+                    <span class="section-tag mono">
+                        <LucideIcon name="code-2" size={16} />
+                        <span>Chapter 02</span>
+                    </span>
+                    <h2 class="block-title">
+                        The
+                        <span class="title-script">tools</span>
+                        I reach for
+                    </h2>
+                    <p class="block-lede">
+                        Not exhaustive. Just the ones I'll happily defend in code review.
+                    </p>
+                </header>
+
+                <div class="stack-chips">
+                    {stack.map((tech, i) => <Chip label={tech} index={i} />)}
+                </div>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="container">
+                <div class="cta-card">
+                    <span class="cta-tag mono">Chapter 03 · Contact</span>
+                    <h2 class="cta-title">
+                        Got something
+                        <span class="marker">interesting</span>?
+                    </h2>
+                    <p class="cta-text">
+                        Drop me a line. I read everything (eventually) and reply
+                        within a couple of days.
+                    </p>
+                    <a
+                        href="mailto:hello@jan-kessler.com"
+                        class="btn btn-primary btn-lg"
+                    >
+                        <LucideIcon name="mail" size={20} />
+                        hello@jan-kessler.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hero {
+        padding-top: 6.5rem;
+        padding-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+        .hero {
+            padding-top: 8.5rem;
+            padding-bottom: 5rem;
+        }
+    }
+
+    .hero-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+        .hero-grid {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-aside {
+            width: 18rem;
+            flex-shrink: 0;
+            margin-top: 4rem;
+        }
+    }
+
+    /* tag pill */
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.875rem;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        box-shadow: 3px 3px 0 0 var(--shadow);
+        margin-bottom: 1.75rem;
+        transform: rotate(-1.5deg);
+    }
+
+    .tag-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: var(--accent);
+        border-radius: 9999px;
+        animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 11vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        margin: 0 0 1.5rem;
+        color: var(--ink);
+    }
+
+    .title-script {
+        font-style: italic;
+        font-weight: 400;
+        font-family: var(--font-sans);
+        color: var(--accent);
+        letter-spacing: -0.03em;
+    }
+
+    .title-dot {
+        color: var(--accent);
+    }
+
+    .hero-pitch {
+        font-size: 1.0625rem;
+        font-weight: 500;
+        line-height: 1.6;
+        max-width: 36rem;
+        margin: 0 0 2rem;
+        color: var(--ink);
+    }
+
+    .hero-pitch em {
+        color: var(--ink-muted);
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.875rem;
+    }
+
+    /* hero aside — stamp + handwritten card */
+    .hero-aside {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .stamp-large {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1rem;
+        padding: 0.85rem 1.4rem;
+        font-family: var(--font-mono);
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        border: 3px double currentColor;
+        border-radius: 0.4rem;
+        background: transparent;
+        transform: rotate(-6deg);
+        align-self: center;
+    }
+
+    .stamp-large-sub {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        opacity: 0.85;
+    }
+
+    .note-card {
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 0.625rem;
+        padding: 1rem 1.25rem;
+        box-shadow: 4px 4px 0 0 var(--shadow);
+        transform: rotate(1.5deg);
+        align-self: stretch;
+    }
+
+    .note-line {
+        margin: 0.4rem 0;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        color: var(--ink);
+    }
+
+    .note-kicker {
+        display: block;
+        font-size: 0.625rem;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 0.1rem;
+    }
+
+    /* buttons */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding: 0.75rem 1.125rem;
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease,
+            background 0.15s ease,
+            color 0.15s ease;
+        box-shadow: 4px 4px 0 0 var(--shadow);
+    }
+
+    .btn:hover {
+        transform: translate(-2px, -2px) rotate(-1.5deg);
+        box-shadow: 6px 6px 0 0 var(--shadow);
+    }
+
+    .btn-primary {
+        background: var(--accent);
+        color: #ffffff;
+    }
+
+    .btn-secondary {
+        background: var(--surface);
+        color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+        background: var(--accent-soft);
+        color: var(--card-ink);
+    }
+
+    .btn-lg {
+        font-size: 0.9375rem;
+        padding: 0.95rem 1.5rem;
+    }
+
+    /* blocks */
+    .block {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .block {
+            padding-top: 3.5rem;
+            padding-bottom: 3.5rem;
+        }
+    }
+
+    .block-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+        max-width: 40rem;
+    }
+
+    .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.75rem;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        box-shadow: 3px 3px 0 0 var(--shadow);
+        transform: rotate(-1.5deg);
+    }
+
+    .block-title {
+        font-family: var(--font-display);
+        font-size: var(--headline);
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+        color: var(--ink);
+    }
+
+    .block-lede {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+    }
+
+    /* services grid */
+    .services-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+        .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+        }
+    }
+
+    .service-card {
+        position: relative;
+        background: var(--card-bg);
+        color: var(--card-ink);
+        border: 2px solid var(--border);
+        border-radius: 0.875rem;
+        padding: 1.5rem;
+        box-shadow: 6px 6px 0 0 var(--shadow);
+        transform: rotate(var(--service-tilt, 0deg));
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+        transform: rotate(0deg) translate(-3px, -3px);
+        box-shadow: 9px 9px 0 0 var(--shadow);
+    }
+
+    @media (min-width: 768px) {
+        .service-card {
+            padding: 1.75rem;
+        }
+    }
+
+    .service-number {
+        position: absolute;
+        top: 0.875rem;
+        right: 1rem;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        color: var(--card-ink);
+        opacity: 0.55;
+    }
+
+    .service-title {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.75rem;
+        padding-right: 2rem;
+        color: var(--card-ink);
+    }
+
+    .service-description {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 1.55;
+        margin: 0;
+        color: var(--card-ink);
+    }
+
+    /* stack chips */
+    .stack-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    /* cta */
+    .cta-card {
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 1rem;
+        padding: 2.5rem 1.5rem;
+        box-shadow: 6px 6px 0 0 var(--shadow);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: rotate(-0.5deg);
+    }
+
+    @media (min-width: 768px) {
+        .cta-card {
+            padding: 3.5rem 2.5rem;
+        }
+    }
+
+    .cta-tag {
+        display: inline-block;
+        padding: 0.3rem 0.625rem;
+        background: var(--ink);
+        color: var(--ink-inverse);
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        margin-bottom: 1.25rem;
+        transform: rotate(-1.5deg);
+    }
+
+    .cta-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 5vw, 2.75rem);
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0 0 0.75rem;
+        color: var(--ink);
+    }
+
+    .cta-text {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0 0 1.75rem;
+        color: var(--ink-muted);
+        max-width: 30rem;
+    }
+</style>
