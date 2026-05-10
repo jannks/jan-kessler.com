@@ -20,6 +20,7 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
 
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -132,28 +133,28 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
         --card-ink: #1a1612;
     }
 
-    /* palette — light (warm cream + coral accent) */
+    /* palette — light (cool mint wash + coral accent) */
     :root[data-theme='light'] {
-        --background: #fff8e7;
+        --background: #eaf1ec;
         --surface: #ffffff;
-        --ink: #1a1612;
-        --ink-muted: #5a514a;
-        --ink-inverse: #fff8e7;
-        --border: #1a1612;
-        --shadow: #1a1612;
+        --ink: #11181a;
+        --ink-muted: #56636a;
+        --ink-inverse: #eaf1ec;
+        --border: #11181a;
+        --shadow: #11181a;
         --accent: #ff5252;
         --accent-soft: #ffe066;
     }
 
-    /* palette — dark (warm dark + brighter coral) */
+    /* palette — dark (deep petrol + brighter coral) */
     :root[data-theme='dark'] {
-        --background: #1a1612;
-        --surface: #2a2520;
-        --ink: #fff8e7;
-        --ink-muted: #b8aea2;
-        --ink-inverse: #1a1612;
-        --border: #fff8e7;
-        --shadow: #fff8e7;
+        --background: #11181a;
+        --surface: #1c2528;
+        --ink: #eaf1ec;
+        --ink-muted: #9aa8ad;
+        --ink-inverse: #11181a;
+        --border: #eaf1ec;
+        --shadow: #eaf1ec;
         --accent: #ff7b7b;
         --accent-soft: #ffe066;
     }
@@ -233,10 +234,12 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
             transparent 98%
         );
         background-repeat: no-repeat;
-        background-position: 0 88%;
-        background-size: 100% 60%;
-        padding: 0 0.15em;
+        background-position: 0 50%;
+        background-size: 100% 100%;
+        padding: 0.05em 0.2em;
         color: var(--card-ink);
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
     }
 
     /* washi tape strip */
