@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="♥" description="" image="/girlfriend.jpeg">
+    <main class="container girlfriend">
+        <div class="frame">
+            <img src="/girlfriend.jpeg" alt="" />
+            <span class="stamp gf-stamp">
+                die tollste<br />
+                hübscheste<br />
+                sympathischste<br />
+                Freundin der Welt
+            </span>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .girlfriend {
+        padding-top: 8.5rem;
+        padding-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .frame {
+        position: relative;
+        display: inline-block;
+    }
+
+    .frame img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border: 2px solid var(--border);
+        box-shadow: 8px 8px 0 0 var(--shadow);
+    }
+
+    .gf-stamp {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.15;
+        padding: 0.75rem 1rem;
+        border-width: 3px;
+        text-align: center;
+        background: color-mix(in srgb, var(--surface) 80%, transparent);
+        transform: rotate(-8deg);
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.08);
+    }
+
+    @media (max-width: 480px) {
+        .gf-stamp {
+            top: 0.75rem;
+            right: 0.75rem;
+            font-size: 0.7rem;
+            padding: 0.5rem 0.7rem;
+        }
+    }
+</style>

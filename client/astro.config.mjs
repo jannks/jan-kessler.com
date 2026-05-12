@@ -17,5 +17,10 @@ export default defineConfig({
             prefixDefaultLocale: false,
         },
     },
-    integrations: [sitemap({ i18n: { defaultLocale: 'de', locales: { de: 'de', en: 'en' } } })],
+    integrations: [
+        sitemap({
+            i18n: { defaultLocale: 'de', locales: { de: 'de', en: 'en' } },
+            filter: (page) => !/\/girlfriend\/?$/.test(page),
+        }),
+    ],
 });
