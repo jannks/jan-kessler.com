@@ -10,7 +10,7 @@ const siteSeed: Record<Locale, any> = {
             languageAria: 'Sprache wechseln',
         },
         footer: {
-            text: '© {year} · Mit zu viel Kaffee gemacht in Villingen-Schwenningen',
+            text: '© {year}',
         },
     },
     en: {
@@ -20,7 +20,7 @@ const siteSeed: Record<Locale, any> = {
             languageAria: 'Switch language',
         },
         footer: {
-            text: '© {year} · Made with too much coffee in Villingen-Schwenningen',
+            text: '© {year}',
         },
     },
 };
@@ -43,36 +43,34 @@ const homeSeed: Record<Locale, any> = {
         meta: {
             title: 'Jan Kessler — Software Engineer',
             description:
-                'Jan Kessler ist Softwareentwickler aus Villingen-Schwenningen.',
+                'Jan Kessler – Software Engineer aus Villingen-Schwenningen. Backend, Frontend und Tech-Lead für ambitionierte Web-Produkte.',
         },
         intro: {
-            status: 'Offen für Projekte · Keine Agenturen bitte',
+            status: 'Offen für Projekte',
             polaroidAlt: 'Portrait von Jan Kessler',
-            polaroidCaption: 'das bin ich, hi 👋',
+            polaroidCaption: 'Jan, hi.',
             currentlyKicker: 'Aktuell',
             currentlyRole: 'Software Engineer',
             currentlySuffix: '& Lead Dev',
             currentlyAt: 'bei',
-            asideKicker: 'Nebenbei',
+            asideKicker: 'Hintergrund',
             asideText:
-                'Baue Sachen seit 2014, meistens in TypeScript, manchmal in Swift, wenn die Stimmung passt.',
-            freelanceCta: 'Buch mich nebenbei',
-            scrollHint: 'scroll, wenn du neugierig bist',
-            scrollAria: 'Zu ausgewählter Arbeit scrollen',
+                'Seit 2018 in der Software-Entwicklung – primär TypeScript, daneben Swift für native iOS-Anwendungen.',
+            freelanceCta: 'Anfrage senden',
+            scrollHint: 'Ausgewählte Arbeiten',
+            scrollAria: 'Zu ausgewählten Arbeiten scrollen',
         },
         projects: {
-            chapterTag: 'Kapitel 02',
-            titlePrefix: 'Sachen,',
-            titleItalic: 'die ich',
-            titleMarker: 'wirklich gelauncht habe',
-            ledePrefix: 'Keine Side-Projects, keine „evaluiert",',
-            ledeStrike: 'in Produktion eingesetzt',
-            ledeItalic: 'echte Nutzer schreien an, wenn was kaputtgeht.',
+            titlePrefix: 'Projekte,',
+            titleItalic: 'an denen ich',
+            titleMarker: 'mitgewirkt habe',
+            ledePrefix: 'Keine Konzepte, keine Prototypen – sondern Anwendungen,',
+            ledeItalic: 'die jeden Tag von echten Nutzern verwendet werden.',
             stamps: [
                 { label: 'live' },
-                { label: 'läuft' },
-                { label: 'in prod' },
-                { label: 'noch da' },
+                { label: 'in produktion' },
+                { label: 'aktiv' },
+                { label: 'released' },
             ],
         },
     },
@@ -80,36 +78,34 @@ const homeSeed: Record<Locale, any> = {
         meta: {
             title: 'Jan Kessler — Software Engineer',
             description:
-                'Jan Kessler is a software developer based in Villingen-Schwenningen, Germany.',
+                'Jan Kessler – Software Engineer based in Villingen-Schwenningen, Germany. Backend, frontend, and tech leadership for ambitious web products.',
         },
         intro: {
-            status: 'Open for projects · No agencies pls',
+            status: 'Currently accepting select freelance projects',
             polaroidAlt: 'Portrait of Jan Kessler',
-            polaroidCaption: "that's me, hi 👋",
+            polaroidCaption: 'Jan, hi.',
             currentlyKicker: 'Currently',
             currentlyRole: 'Software Engineer',
             currentlySuffix: '& Lead Dev',
             currentlyAt: '@',
-            asideKicker: 'Aside',
+            asideKicker: 'Background',
             asideText:
-                'Building things since 2014, mostly in TypeScript, sometimes in Swift when the mood strikes.',
-            freelanceCta: 'Hire me on the side',
-            scrollHint: "scroll if you're nosy",
+                'Building production software since 2014 — primarily in TypeScript, complemented by Swift for native iOS work.',
+            freelanceCta: 'Available for freelance',
+            scrollHint: 'Selected work',
             scrollAria: 'Scroll to selected work',
         },
         projects: {
-            chapterTag: 'Chapter 02',
-            titlePrefix: 'Stuff',
+            titlePrefix: 'Projects',
             titleItalic: "I've",
-            titleMarker: 'actually shipped',
-            ledePrefix: 'Not side-projects, not "explored",',
-            ledeStrike: 'used in production',
-            ledeItalic: 'real users yelling at me when it broke.',
+            titleMarker: 'shipped to production',
+            ledePrefix: 'Not concepts, not prototypes — applications',
+            ledeItalic: 'relied on daily by real customers.',
             stamps: [
                 { label: 'shipped' },
                 { label: 'live' },
-                { label: 'in prod' },
-                { label: 'still up' },
+                { label: 'in production' },
+                { label: 'released' },
             ],
         },
     },
@@ -123,68 +119,63 @@ const freelanceSeed: Record<Locale, any> = {
                 'Freelance Software Engineer aus Villingen-Schwenningen — SaaS-Entwicklung, Tech-Lead auf Anfrage, Backend & Frontend.',
         },
         hero: {
-            availabilityTag: 'Nehme Freelance-Aufträge an · Q3 + Q4',
+            availabilityTag: 'Freelance-Kapazität verfügbar · Q3 + Q4',
             titleLine1: 'Freelance',
             titleScript: 'Software',
             titleLine3: 'Engineer',
-            pitchPrefix: 'Ich helfe Produkt-Teams dabei, ',
-            pitchMarker: 'ambitionierte Web-Apps',
+            pitchPrefix: 'Ich unterstütze Produkt-Teams dabei, ',
+            pitchMarker: 'ambitionierte Web-Anwendungen',
             pitchSuffix:
-                ' zu designen, zu bauen und live zu bringen — vom ersten Prototyp bis zum „läuft in Prod, echte Nutzer drin".',
-            pitchItalic: 'Am liebsten die Art, die Miete zahlt.',
-            ctaPrimary: 'Sag hallo',
-            ctaSecondary: 'Meine Arbeit ansehen',
+                ' zu konzipieren, zu bauen und in Produktion zu bringen – vom ersten Prototyp bis zum stabilen Betrieb.',
+            pitchItalic: 'Bevorzugt Projekte mit klarem Produktziel.',
+            ctaPrimary: 'Kontakt aufnehmen',
+            ctaSecondary: 'Arbeiten ansehen',
             availableLabel: 'Verfügbar',
-            availableSub: 'so ziemlich jetzt',
-            basedInKicker: 'Sitz in',
+            availableSub: 'ab sofort',
+            basedInKicker: 'Standort',
             basedInValue: 'Villingen-Schwenningen, Deutschland',
-            workingWithKicker: 'Arbeite mit',
-            workingWithValue: 'Teams in der EU + remote',
+            workingWithKicker: 'Zusammenarbeit',
+            workingWithValue: 'Remote mit Teams in DACH und Europa',
             replyTimeKicker: 'Antwortzeit',
-            replyTimeValue: '~2 Tage, manchmal schneller',
+            replyTimeValue: 'Innerhalb von 1–2 Werktagen',
         },
         chapter01: {
-            tag: 'Kapitel 01',
-            titlePrefix: 'Sachen, die ich',
+            titlePrefix: 'Wo ich',
             titleMarker: 'gerne',
-            titleSuffix: 'übernehme',
+            titleSuffix: 'helfe',
             services: [
                 {
-                    title: 'SaaS, von A bis Z',
+                    title: 'End-to-End SaaS-Entwicklung',
                     description:
-                        'Web-Apps von „Skizze auf der Serviette" bis „in Prod mit zahlenden Nutzern". API-Design, DB-Modellierung, Frontend, der ganze Deploy-Kram.',
+                        'API-Design, Datenmodellierung, Frontend und Deployment – Web-Anwendungen vom Konzept bis zum produktiven Betrieb mit echten Nutzern.',
                 },
                 {
-                    title: 'Tech Lead, geliehen',
+                    title: 'Tech Lead auf Zeit',
                     description:
-                        'Architektur-Reviews, Mentoring und das gelegentliche „warum ist das kaputt"-Tieftauchen für Teams, die ein Senior-Hirn part-time brauchen.',
+                        'Architektur-Reviews, Mentoring und gezielte Problemanalysen – für Teams, die punktuell erfahrene Unterstützung brauchen.',
                 },
                 {
-                    title: 'Backend, das skaliert',
+                    title: 'Skalierbares Backend',
                     description:
-                        'NestJS / Node.js, REST + GraphQL, MongoDB-Schemas, die dich in zwei Jahren nicht heimsuchen.',
+                        'NestJS und Node.js, REST- und GraphQL-APIs, MongoDB-Schemas, die auch in zwei Jahren noch wartbar sind.',
                 },
                 {
-                    title: 'Frontend, refactored',
+                    title: 'Frontend-Modernisierung',
                     description:
-                        'Rettungen für Angular und React. Performance-Arbeit. Design-Systeme, die den Kontakt mit der Realität überleben.',
+                        'Refactoring bestehender Angular- und React-Anwendungen, Performance-Optimierung und langlebige Design-Systeme.',
                 },
             ],
         },
         chapter02: {
-            tag: 'Kapitel 02',
             titlePrefix: 'Die',
             titleScript: 'Tools',
-            titleSuffix: 'nach denen ich greife',
-            lede:
-                'Nicht vollständig. Nur die, die ich im Code-Review verteidige.',
+            titleSuffix: 'mit denen ich arbeite',
+            lede: 'Kein vollständiger Katalog – nur die Technologien, die ich täglich einsetze und empfehle.',
         },
         chapter03: {
-            tag: 'Kapitel 03 · Kontakt',
             titlePrefix: 'Etwas',
-            titleMarker: 'Spannendes',
-            text:
-                'Schreib mir. Ich lese alles (irgendwann) und antworte innerhalb von ein paar Tagen.',
+            titleMarker: 'Konkretes',
+            text: 'Eine kurze Skizze des Vorhabens genügt – ich melde mich innerhalb von 1–2 Werktagen.',
         },
     },
     en: {
@@ -194,68 +185,63 @@ const freelanceSeed: Record<Locale, any> = {
                 'Freelance Software Engineer based in Villingen-Schwenningen — SaaS development, tech lead on demand, backend and frontend engineering.',
         },
         hero: {
-            availabilityTag: 'Taking on freelance work · Q3 + Q4',
+            availabilityTag: 'Freelance availability · Q3 + Q4',
             titleLine1: 'Freelance',
             titleScript: 'Software',
             titleLine3: 'Engineer',
-            pitchPrefix: 'I help product teams design, build, and ship ',
-            pitchMarker: 'ambitious web apps',
+            pitchPrefix: 'I help product teams design, build, and operate ',
+            pitchMarker: 'ambitious web applications',
             pitchSuffix:
-                ' — from first prototype to "running in prod with real users".',
-            pitchItalic: 'Mostly the kind that pay rent.',
-            ctaPrimary: 'Say hi',
+                ' — from initial prototype to a stable production deployment with real users.',
+            pitchItalic: 'Preferably projects with real business impact.',
+            ctaPrimary: 'Get in touch',
             ctaSecondary: 'See my work',
             availableLabel: 'Available',
-            availableSub: 'now-ish',
+            availableSub: 'starting immediately',
             basedInKicker: 'Based in',
             basedInValue: 'Villingen-Schwenningen, Germany',
             workingWithKicker: 'Working with',
-            workingWithValue: 'Teams in EU + remote',
+            workingWithValue: 'Remote with teams across DACH and the EU',
             replyTimeKicker: 'Reply time',
-            replyTimeValue: '~2 days, sometimes faster',
+            replyTimeValue: 'Within 1–2 business days',
         },
         chapter01: {
-            tag: 'Chapter 01',
-            titlePrefix: "Things I'll",
+            titlePrefix: 'Where I',
             titleMarker: 'happily',
-            titleSuffix: 'take on',
+            titleSuffix: 'lend a hand',
             services: [
                 {
-                    title: 'SaaS, soup-to-nuts',
+                    title: 'End-to-end SaaS development',
                     description:
-                        'Web apps from "napkin sketch" to "production with paying users". API design, DB modeling, frontend, the boring deploy stuff.',
+                        'Conception, API design, data modeling, frontend development, and deployment — web applications from initial idea to production with real users.',
                 },
                 {
-                    title: 'Tech Lead, on loan',
+                    title: 'Tech Lead on demand',
                     description:
-                        'Architecture reviews, mentoring, and the occasional "why is this broken" deep-dive for teams that need a senior brain part-time.',
+                        'Architecture reviews, mentoring, and targeted problem analysis — for teams that need senior expertise on a part-time basis.',
                 },
                 {
                     title: 'Backend that scales',
                     description:
-                        "NestJS / Node.js, REST + GraphQL, MongoDB schemas that won't haunt you in two years.",
+                        'NestJS and Node.js, REST and GraphQL APIs, and well-designed MongoDB schemas built for long-term maintainability.',
                 },
                 {
-                    title: 'Frontend, refactored',
+                    title: 'Frontend modernization',
                     description:
-                        'Angular and React rescues. Performance work. Design systems that survive contact with reality.',
+                        'Refactoring existing Angular and React codebases, performance optimization, and durable design systems.',
                 },
             ],
         },
         chapter02: {
-            tag: 'Chapter 02',
             titlePrefix: 'The',
             titleScript: 'tools',
-            titleSuffix: 'I reach for',
-            lede:
-                "Not exhaustive. Just the ones I'll happily defend in code review.",
+            titleSuffix: 'I work with',
+            lede: 'Not an exhaustive list — these are the technologies I can confidently recommend from daily practice.',
         },
         chapter03: {
-            tag: 'Chapter 03 · Contact',
             titlePrefix: 'Got something',
-            titleMarker: 'interesting',
-            text:
-                'Drop me a line. I read everything (eventually) and reply within a couple of days.',
+            titleMarker: 'concrete',
+            text: "Let's talk. A short outline of your project is enough to get started — I typically reply within 1–2 business days.",
         },
     },
 };
@@ -265,6 +251,7 @@ const seedGlobal = async (
     slug: 'site' | 'home-page' | 'freelance-page',
     locale: Locale,
     data: Record<string, unknown>,
+    force: boolean,
 ): Promise<void> => {
     const api = payload as unknown as {
         findGlobal: (args: Record<string, unknown>) => Promise<{
@@ -272,25 +259,40 @@ const seedGlobal = async (
         } | null>;
         updateGlobal: (args: Record<string, unknown>) => Promise<unknown>;
     };
-    const current = await api.findGlobal({ slug, locale, depth: 0 });
-    if (current?.updatedAt) return;
+    if (!force) {
+        const current = await api.findGlobal({ slug, locale, depth: 0 });
+        if (current?.updatedAt) return;
+    }
     await api.updateGlobal({ slug, locale, data });
-    payload.logger.info(`Seeded global "${slug}" for locale "${locale}".`);
+    payload.logger.info(
+        `Seeded global "${slug}" for locale "${locale}"${force ? ' (forced)' : ''}.`,
+    );
 };
 
 export const seedGlobals = async (payload: Payload): Promise<void> => {
+    const force = process.env.SEED_FORCE === '1';
     try {
         for (const locale of ['de', 'en'] as const) {
-            await seedGlobal(payload, 'site', locale, {
-                ...siteSeed[locale],
-                stack: stackSeed,
-            });
-            await seedGlobal(payload, 'home-page', locale, homeSeed[locale]);
+            await seedGlobal(
+                payload,
+                'site',
+                locale,
+                { ...siteSeed[locale], stack: stackSeed },
+                force,
+            );
+            await seedGlobal(
+                payload,
+                'home-page',
+                locale,
+                homeSeed[locale],
+                force,
+            );
             await seedGlobal(
                 payload,
                 'freelance-page',
                 locale,
                 freelanceSeed[locale],
+                force,
             );
         }
     } catch (err) {

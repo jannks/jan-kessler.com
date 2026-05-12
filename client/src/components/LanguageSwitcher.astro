@@ -7,30 +7,30 @@ import { getDictionary, languageLabels, locales } from '../i18n/ui';
 
 const currentLocale = getLocale(Astro);
 const dict = await getDictionary(currentLocale);
-const targets = locales
-    .filter((locale) => locale !== currentLocale)
-    .map((locale) => ({
-        locale,
-        href: getLocalizedPath(Astro.url.pathname, locale, currentLocale),
-        label: languageLabels[locale],
-    }));
 ---
 
 <div class="language-switch" role="group" aria-label={dict.nav.languageAria}>
-    <span class="lang-current mono" aria-hidden="true">
-        {languageLabels[currentLocale]}
-    </span>
     {
-        targets.map((target) => (
-            <a
-                href={target.href}
-                class="lang-link mono"
-                hreflang={target.locale}
-                aria-label={`${dict.nav.languageAria}: ${target.label}`}
-            >
-                {target.label}
-            </a>
-        ))
+        locales.map((locale) =>
+            locale === currentLocale ? (
+                <span class="lang-current mono" aria-current="true">
+                    {languageLabels[locale]}
+                </span>
+            ) : (
+                <a
+                    href={getLocalizedPath(
+                        Astro.url.pathname,
+                        locale,
+                        currentLocale,
+                    )}
+                    class="lang-link mono"
+                    hreflang={locale}
+                    aria-label={`${dict.nav.languageAria}: ${languageLabels[locale]}`}
+                >
+                    {languageLabels[locale]}
+                </a>
+            ),
+        )
     }
 </div>
 

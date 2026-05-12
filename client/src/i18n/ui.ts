@@ -25,16 +25,13 @@ export interface Dictionary {
         stamps: readonly string[];
     };
     freelance: FreelancePage['hero'] & {
-        chapter01Tag: string;
         chapter01TitlePrefix: string;
         chapter01TitleMarker: string;
         chapter01TitleSuffix: string;
-        chapter02Tag: string;
         chapter02TitlePrefix: string;
         chapter02TitleScript: string;
         chapter02TitleSuffix: string;
         chapter02Lede: string;
-        chapter03Tag: string;
         chapter03TitlePrefix: string;
         chapter03TitleMarker: string;
         chapter03Text: string;
@@ -86,16 +83,13 @@ const buildDictionary = (
     },
     freelance: {
         ...freelance.hero,
-        chapter01Tag: freelance.chapter01.tag,
         chapter01TitlePrefix: freelance.chapter01.titlePrefix,
         chapter01TitleMarker: freelance.chapter01.titleMarker,
         chapter01TitleSuffix: freelance.chapter01.titleSuffix,
-        chapter02Tag: freelance.chapter02.tag,
         chapter02TitlePrefix: freelance.chapter02.titlePrefix,
         chapter02TitleScript: freelance.chapter02.titleScript,
         chapter02TitleSuffix: freelance.chapter02.titleSuffix,
         chapter02Lede: freelance.chapter02.lede,
-        chapter03Tag: freelance.chapter03.tag,
         chapter03TitlePrefix: freelance.chapter03.titlePrefix,
         chapter03TitleMarker: freelance.chapter03.titleMarker,
         chapter03Text: freelance.chapter03.text,

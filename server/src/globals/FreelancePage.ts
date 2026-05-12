@@ -55,7 +55,6 @@ const FreelancePage: GlobalConfig = {
             type: 'group',
             label: 'Chapter 01 — Services',
             fields: [
-                text('tag'),
                 text('titlePrefix'),
                 text('titleMarker'),
                 text('titleSuffix'),
@@ -76,7 +75,6 @@ const FreelancePage: GlobalConfig = {
             type: 'group',
             label: 'Chapter 02 — Stack',
             fields: [
-                text('tag'),
                 text('titlePrefix'),
                 text('titleScript'),
                 text('titleSuffix'),
@@ -88,7 +86,6 @@ const FreelancePage: GlobalConfig = {
             type: 'group',
             label: 'Chapter 03 — Contact',
             fields: [
-                text('tag'),
                 text('titlePrefix'),
                 text('titleMarker'),
                 textarea('text'),

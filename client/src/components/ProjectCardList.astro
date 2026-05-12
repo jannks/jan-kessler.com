@@ -1,6 +1,5 @@
 ---
 import type { Project } from '@payload-types';
-import LucideIcon from './LucideIcon.astro';
 import ProjectCard from './ProjectCard.astro';
 import { getLocale } from '../i18n/utils';
 import { getDictionary } from '../i18n/ui';
@@ -18,10 +17,6 @@ const projects: { docs: Project[] } = await fetch(
 <section id="cards" class="section">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag mono">
-                <LucideIcon name="code-2" size={16} />
-                <span>{t.chapterTag}</span>
-            </span>
             <h2 class="section-title">
                 {t.titlePrefix}
                 <span class="title-accent">{t.titleItalic}</span>
@@ -29,7 +24,6 @@ const projects: { docs: Project[] } = await fetch(
             </h2>
             <p class="section-lede">
                 {t.ledePrefix}
-                <span class="strike">{t.ledeStrike}</span>
                 <em>{t.ledeItalic}</em>
             </p>
         </div>
@@ -71,22 +65,6 @@ const projects: { docs: Project[] } = await fetch(
         margin-bottom: 4rem;
     }
 
-    .section-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.75rem;
-        background: var(--surface);
-        color: var(--ink);
-        border: 2px solid var(--border);
-        border-radius: 0.5rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        font-weight: 500;
-        box-shadow: 3px 3px 0 0 var(--shadow);
-        transform: rotate(-1.5deg);
-    }
-
     .section-title {
         font-family: var(--font-display);
         font-size: var(--headline);
@@ -117,12 +95,6 @@ const projects: { docs: Project[] } = await fetch(
         font-weight: 600;
     }
 
-    .strike {
-        text-decoration: line-through;
-        text-decoration-thickness: 2px;
-        text-decoration-color: var(--accent);
-        opacity: 0.7;
-    }
 
     .cards-grid {
         list-style: none;

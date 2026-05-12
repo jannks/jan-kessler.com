@@ -99,12 +99,6 @@ const HomePage: GlobalConfig = {
             label: 'Projects Section',
             fields: [
                 {
-                    name: 'chapterTag',
-                    type: 'text',
-                    required: true,
-                    localized: true,
-                },
-                {
                     name: 'titlePrefix',
                     type: 'text',
                     required: true,
@@ -124,12 +118,6 @@ const HomePage: GlobalConfig = {
                 },
                 {
                     name: 'ledePrefix',
-                    type: 'text',
-                    required: true,
-                    localized: true,
-                },
-                {
-                    name: 'ledeStrike',
                     type: 'text',
                     required: true,
                     localized: true,

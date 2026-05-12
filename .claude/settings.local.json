@@ -2,7 +2,24 @@
   "permissions": {
     "allow": [
       "Bash(git *)",
-      "Bash(npx astro *)"
+      "Bash(npx astro *)",
+      "Bash(npx tsc *)",
+      "Bash(yarn generate:types)",
+      "Bash(curl -sS \"http://localhost:3000/api/globals/home-page?locale=de&depth=0\")",
+      "Bash(curl -sS -o /dev/null -w \"%{http_code}\\\\n\" \"http://localhost:3000/api/globals/home-page\")",
+      "Bash(curl -sS \"http://localhost:3000/api/projects?depth=1&sort=createdAt&locale=de&limit=1\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/check_unused_css.sh)",
+      "Bash(/tmp/check_unused_css.sh)",
+      "Bash(grep -v '^$')",
+      "Read(//private/tmp/**)",
+      "Bash(curl -sS -A 'Mozilla/5.0 \\(Macintosh; Intel Mac OS X 14_0\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36' 'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap')",
+      "Bash(mkdir -p Archivo_Black Space_Grotesk)",
+      "Bash(curl -sS -o Archivo_Black/latin-ext.woff2 \"https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYKF_jzx13HOvQ.woff2\")",
+      "Bash(curl -sS -o Archivo_Black/latin.woff2     \"https://fonts.gstatic.com/s/archivoblack/v23/HTxqL289NzCGg4MzN6KJ7eW6CYyF_jzx13E.woff2\")",
+      "Bash(curl -sS -o Space_Grotesk/latin-ext.woff2 \"https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2\")",
+      "Bash(curl -sS -o Space_Grotesk/latin.woff2     \"https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2\")"
     ]
   }
 }

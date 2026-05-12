@@ -201,12 +201,10 @@ export interface HomePage {
     scrollAria: string;
   };
   projects: {
-    chapterTag: string;
     titlePrefix: string;
     titleItalic: string;
     titleMarker: string;
     ledePrefix: string;
-    ledeStrike: string;
     ledeItalic: string;
     stamps?:
       | {
@@ -249,7 +247,6 @@ export interface FreelancePage {
     replyTimeValue: string;
   };
   chapter01: {
-    tag: string;
     titlePrefix: string;
     titleMarker: string;
     titleSuffix: string;
@@ -262,14 +259,12 @@ export interface FreelancePage {
       | null;
   };
   chapter02: {
-    tag: string;
     titlePrefix: string;
     titleScript: string;
     titleSuffix: string;
     lede: string;
   };
   chapter03: {
-    tag: string;
     titlePrefix: string;
     titleMarker: string;
     text: string;

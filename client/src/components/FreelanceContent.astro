@@ -78,10 +78,6 @@ const cardColors = [
     <section class="block">
         <div class="container">
             <header class="block-header">
-                <span class="section-tag mono">
-                    <LucideIcon name="sparkles" size={16} />
-                    <span>{t.chapter01Tag}</span>
-                </span>
                 <h2 class="block-title">
                     {t.chapter01TitlePrefix}
                     <span class="marker">{t.chapter01TitleMarker}</span>
@@ -113,10 +109,6 @@ const cardColors = [
     <section class="block">
         <div class="container">
             <header class="block-header">
-                <span class="section-tag mono">
-                    <LucideIcon name="code-2" size={16} />
-                    <span>{t.chapter02Tag}</span>
-                </span>
                 <h2 class="block-title">
                     {t.chapter02TitlePrefix}
                     <span class="title-script">{t.chapter02TitleScript}</span>
@@ -134,7 +126,6 @@ const cardColors = [
     <section class="block">
         <div class="container">
             <div class="cta-card">
-                <span class="cta-tag mono">{t.chapter03Tag}</span>
                 <h2 class="cta-title">
                     {t.chapter03TitlePrefix}
                     <span class="marker">{t.chapter03TitleMarker}</span>?
@@ -395,21 +386,6 @@ const cardColors = [
         max-width: 40rem;
     }
 
-    .section-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.75rem;
-        background: var(--surface);
-        color: var(--ink);
-        border: 2px solid var(--border);
-        border-radius: 0.5rem;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        font-weight: 500;
-        box-shadow: 3px 3px 0 0 var(--shadow);
-        transform: rotate(-1.5deg);
-    }
 
     .block-title {
         font-family: var(--font-display);
@@ -523,19 +499,6 @@ const cardColors = [
         .cta-card {
             padding: 3.5rem 2.5rem;
         }
-    }
-
-    .cta-tag {
-        display: inline-block;
-        padding: 0.3rem 0.625rem;
-        background: var(--ink);
-        color: var(--ink-inverse);
-        font-size: 0.6875rem;
-        text-transform: uppercase;
-        font-weight: 500;
-        border-radius: 0.375rem;
-        margin-bottom: 1.25rem;
-        transform: rotate(-1.5deg);
     }
 
     .cta-title {
