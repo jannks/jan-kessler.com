@@ -32,11 +32,7 @@ const projects: { docs: Project[] } = await fetch(
             {
                 projects.docs.map((project, index) => (
                     <li class="card-item">
-                        <ProjectCard
-                            project={project}
-                            index={index}
-                            stampLabel={t.stamps[index % t.stamps.length]}
-                        />
+                        <ProjectCard project={project} index={index} />
                     </li>
                 ))
             }

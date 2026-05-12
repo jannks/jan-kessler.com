@@ -21,9 +21,7 @@ export interface Dictionary {
     };
     footer: Site['footer'];
     intro: HomePage['intro'];
-    projects: Omit<HomePage['projects'], 'stamps'> & {
-        stamps: readonly string[];
-    };
+    projects: HomePage['projects'];
     freelance: FreelancePage['hero'] & {
         chapter01TitlePrefix: string;
         chapter01TitleMarker: string;
@@ -77,10 +75,7 @@ const buildDictionary = (
     },
     footer: site.footer,
     intro: home.intro,
-    projects: {
-        ...home.projects,
-        stamps: (home.projects.stamps ?? []).map((s) => s.label),
-    },
+    projects: home.projects,
     freelance: {
         ...freelance.hero,
         chapter01TitlePrefix: freelance.chapter01.titlePrefix,

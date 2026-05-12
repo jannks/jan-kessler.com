@@ -38,30 +38,8 @@ const Projects: CollectionConfig = {
             required: true,
         },
         {
-            name: 'textColor',
+            name: 'stamp',
             type: 'text',
-            required: true,
-        },
-        {
-            name: 'backgroundColor',
-            type: 'text',
-            required: true,
-        },
-        {
-            name: 'media',
-            type: 'upload',
-            relationTo: 'media',
-            filterOptions: {
-                or: [
-                    { mimeType: { contains: 'image' } },
-                    { mimeType: { contains: 'video' } },
-                ],
-            },
-        },
-        {
-            name: 'role',
-            type: 'text',
-            required: true,
             localized: true,
         },
         {

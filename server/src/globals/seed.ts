@@ -66,12 +66,6 @@ const homeSeed: Record<Locale, any> = {
             titleMarker: 'mitgewirkt habe',
             ledePrefix: 'Keine Konzepte, keine Prototypen – sondern Anwendungen,',
             ledeItalic: 'die jeden Tag von echten Nutzern verwendet werden.',
-            stamps: [
-                { label: 'live' },
-                { label: 'in produktion' },
-                { label: 'aktiv' },
-                { label: 'released' },
-            ],
         },
     },
     en: {
@@ -101,12 +95,6 @@ const homeSeed: Record<Locale, any> = {
             titleMarker: 'shipped to production',
             ledePrefix: 'Not concepts, not prototypes — applications',
             ledeItalic: 'relied on daily by real customers.',
-            stamps: [
-                { label: 'shipped' },
-                { label: 'live' },
-                { label: 'in production' },
-                { label: 'released' },
-            ],
         },
     },
 };

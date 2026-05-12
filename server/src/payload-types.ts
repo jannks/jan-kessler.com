@@ -50,10 +50,7 @@ export interface Project {
   projectUrl: string;
   copmanyName: string;
   copmanyUrl: string;
-  textColor: string;
-  backgroundColor: string;
-  media?: string | Media | null;
-  role: string;
+  stamp?: string | null;
   technologies: (
     | 'Angular'
     | 'Node.js'
@@ -206,12 +203,6 @@ export interface HomePage {
     titleMarker: string;
     ledePrefix: string;
     ledeItalic: string;
-    stamps?:
-      | {
-          label: string;
-          id?: string | null;
-        }[]
-      | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;

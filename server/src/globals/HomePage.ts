@@ -128,12 +128,6 @@ const HomePage: GlobalConfig = {
                     required: true,
                     localized: true,
                 },
-                {
-                    name: 'stamps',
-                    type: 'array',
-                    localized: true,
-                    fields: [{ name: 'label', type: 'text', required: true }],
-                },
             ],
         },
     ],
