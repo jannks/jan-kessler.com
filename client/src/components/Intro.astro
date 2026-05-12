@@ -93,7 +93,7 @@ const t = dict.intro;
             </div>
         </div>
 
-        <a href="#cards" class="scroll-hint fade-in" aria-label={t.scrollAria}>
+        <a href="#projects" class="scroll-hint fade-in" aria-label={t.scrollAria}>
             <span class="scroll-handwritten">{t.scrollHint}</span>
             <svg
                 class="scroll-arrow"
@@ -446,11 +446,11 @@ const t = dict.intro;
     const scrollToProjects = (event: Event) => {
         event.preventDefault();
         document
-            .getElementById('cards')
+            .getElementById('projects')
             ?.scrollIntoView({ behavior: 'smooth' });
     };
 
     document
-        .querySelector('a[href="#cards"]')
+        .querySelector('a[href="#projects"]')
         ?.addEventListener('click', scrollToProjects);
 </script>
