@@ -1,11 +1,17 @@
 ---
-import type { Project } from '../types/payload-types';
+import type { Project } from '@payload-types';
 import LucideIcon from './LucideIcon.astro';
 import ProjectCard from './ProjectCard.astro';
+import { getLocale } from '../i18n/utils';
+import { getDictionary } from '../i18n/ui';
+
+const locale = getLocale(Astro);
+const dict = await getDictionary(locale);
+const t = dict.projects;
 
 const apiUrl = import.meta.env.API_URL ?? process.env.API_URL;
 const projects: { docs: Project[] } = await fetch(
-    `${apiUrl}/api/projects?depth=1&sort=createdAt`,
+    `${apiUrl}/api/projects?depth=1&sort=createdAt&locale=${locale}`,
 ).then((res) => res.json());
 ---
 
@@ -14,17 +20,17 @@ const projects: { docs: Project[] } = await fetch(
         <div class="section-header">
             <span class="section-tag mono">
                 <LucideIcon name="code-2" size={16} />
-                <span>Chapter 02</span>
+                <span>{t.chapterTag}</span>
             </span>
             <h2 class="section-title">
-                Stuff
-                <span class="title-accent">I've</span>
-                <span class="marker">actually shipped</span>
+                {t.titlePrefix}
+                <span class="title-accent">{t.titleItalic}</span>
+                <span class="marker">{t.titleMarker}</span>
             </h2>
             <p class="section-lede">
-                Not side-projects, not "explored",
-                <span class="strike">used in production</span>
-                <em>real users yelling at me when it broke.</em>
+                {t.ledePrefix}
+                <span class="strike">{t.ledeStrike}</span>
+                <em>{t.ledeItalic}</em>
             </p>
         </div>
 
@@ -32,7 +38,11 @@ const projects: { docs: Project[] } = await fetch(
             {
                 projects.docs.map((project, index) => (
                     <li class="card-item">
-                        <ProjectCard project={project} index={index} />
+                        <ProjectCard
+                            project={project}
+                            index={index}
+                            stampLabel={t.stamps[index % t.stamps.length]}
+                        />
                     </li>
                 ))
             }

@@ -9,6 +9,10 @@ import { buildConfig } from 'payload/config';
 import Users from './collections/Users';
 import Projects from './collections/Projects';
 import Media from './collections/Media';
+import Site from './globals/Site';
+import HomePage from './globals/HomePage';
+import FreelancePage from './globals/FreelancePage';
+import { seedGlobals } from './globals/seed';
 
 export default buildConfig({
     admin: {
@@ -17,6 +21,15 @@ export default buildConfig({
     },
     editor: slateEditor({}),
     collections: [Users, Projects, Media],
+    globals: [Site, HomePage, FreelancePage],
+    onInit: async (payload) => {
+        await seedGlobals(payload);
+    },
+    localization: {
+        locales: ['de', 'en'],
+        defaultLocale: 'de',
+        fallback: true,
+    },
     upload: {
         limits: {
             fileSize: 10000000, // 10MB, written in bytes
@@ -24,6 +37,7 @@ export default buildConfig({
     },
     typescript: {
         outputFile: path.resolve(__dirname, 'payload-types.ts'),
+        declare: false,
     },
     graphQL: {
         schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),

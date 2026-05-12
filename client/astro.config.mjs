@@ -10,5 +10,12 @@ export default defineConfig({
     adapter: node({
         mode: 'standalone',
     }),
-    integrations: [sitemap({})],
+    i18n: {
+        defaultLocale: 'de',
+        locales: ['de', 'en'],
+        routing: {
+            prefixDefaultLocale: false,
+        },
+    },
+    integrations: [sitemap({ i18n: { defaultLocale: 'de', locales: { de: 'de', en: 'en' } } })],
 });

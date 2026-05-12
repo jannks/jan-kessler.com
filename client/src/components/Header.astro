@@ -1,12 +1,19 @@
 ---
 import LucideIcon from './LucideIcon.astro';
 import ThemeIcon from './ThemeIcon.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLocale } from '../i18n/utils';
+import { getDictionary } from '../i18n/ui';
+import { localizeHref } from '../i18n/utils';
+
+const locale = getLocale(Astro);
+const dict = await getDictionary(locale);
 ---
 
 <header>
     <nav class="container">
         <div class="bar">
-            <a href="/" class="logo" aria-label="Jan Kessler">
+            <a href={localizeHref('/', locale)} class="logo" aria-label="Jan Kessler">
                 <span class="logo-mark">JK</span>
                 <svg
                     class="logo-spark"
@@ -20,16 +27,19 @@ import ThemeIcon from './ThemeIcon.astro';
                 </svg>
             </a>
             <div class="actions">
-                <a href="/freelance" class="nav-link">Freelance</a>
+                <a href={localizeHref('/freelance', locale)} class="nav-link">
+                    {dict.nav.freelance}
+                </a>
                 <a
                     href="https://github.com/jannks"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="icon-button"
-                    aria-label="GitHub"
+                    aria-label={dict.nav.github}
                 >
                     <LucideIcon name="github" size={20} />
                 </a>
+                <LanguageSwitcher />
                 <ThemeIcon />
             </div>
         </div>

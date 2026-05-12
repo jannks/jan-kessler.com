@@ -1,20 +1,31 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getLocale, getLocalizedPath } from '../i18n/utils';
+import { getDictionary, locales } from '../i18n/ui';
 
 interface Props {
     title: string;
     description: string;
     image?: string;
-    canonicalURL?: URL;
 }
 
-const { title, description, image, canonicalURL } = Astro.props;
+const { title, description, image } = Astro.props;
+const locale = getLocale(Astro);
+const dict = await getDictionary(locale);
 const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const alternates = locales.map((alt) => ({
+    locale: alt,
+    href: new URL(
+        getLocalizedPath(Astro.url.pathname, alt, locale),
+        siteURL,
+    ).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={dict.htmlLang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -56,29 +67,36 @@ const siteURL = Astro.site ? Astro.site.toString() : 'https://jan-kessler.com/';
         <!-- SEO meta tags -->
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalURL || siteURL} />
+        <link rel="canonical" href={canonicalURL.toString()} />
+        {
+            alternates.map((alt) => (
+                <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+            ))
+        }
+        <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={siteURL} />
+        <meta property="og:url" content={canonicalURL.toString()} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:locale" content={locale === 'de' ? 'de_DE' : 'en_US'} />
         {
             image && (
-                <meta property="og:image" content={new URL(image, siteURL)} />
+                <meta property="og:image" content={new URL(image, siteURL).toString()} />
             )
         }
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={siteURL} />
+        <meta property="twitter:url" content={canonicalURL.toString()} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         {
             image && (
                 <meta
                     property="twitter:image"
-                    content={new URL(image, siteURL)}
+                    content={new URL(image, siteURL).toString()}
                 />
             )
         }

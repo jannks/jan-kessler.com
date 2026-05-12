@@ -1,5 +1,11 @@
 ---
 import LucideIcon from './LucideIcon.astro';
+import { getLocale, localizeHref } from '../i18n/utils';
+import { getDictionary } from '../i18n/ui';
+
+const locale = getLocale(Astro);
+const dict = await getDictionary(locale);
+const t = dict.intro;
 ---
 
 <section class="intro">
@@ -7,7 +13,7 @@ import LucideIcon from './LucideIcon.astro';
         <div class="status-row">
             <span class="status fade-in">
                 <span class="status-dot" aria-hidden="true"></span>
-                <span class="mono">Open for projects · No agencies pls</span>
+                <span class="mono">{t.status}</span>
             </span>
         </div>
 
@@ -42,20 +48,20 @@ import LucideIcon from './LucideIcon.astro';
                 <span class="tape tape-br" aria-hidden="true"></span>
                 <img
                     src="/portrait.webp"
-                    alt="Portrait of Jan Kessler"
+                    alt={t.polaroidAlt}
                     width="320"
                     height="320"
                     loading="eager"
                 />
-                <span class="polaroid-caption mono">that's me, hi 👋</span>
+                <span class="polaroid-caption mono">{t.polaroidCaption}</span>
             </div>
 
             <div class="meta fade-in">
                 <p class="meta-line">
-                    <span class="mono meta-kicker">Currently</span>
+                    <span class="mono meta-kicker">{t.currentlyKicker}</span>
                     <span class="meta-text">
-                        <span class="marker">Software Engineer</span> &amp;
-                        Lead Dev <span class="at">@</span>
+                        <span class="marker">{t.currentlyRole}</span> {t.currentlySuffix}
+                        <span class="at">{t.currentlyAt}</span>
                         <a
                             href="https://ah-oh.de"
                             target="_blank"
@@ -68,26 +74,23 @@ import LucideIcon from './LucideIcon.astro';
                 </p>
 
                 <p class="meta-line meta-line--secondary">
-                    <span class="mono meta-kicker">Aside</span>
-                    <span class="meta-text">
-                        Building things since 2014, mostly in TypeScript,
-                        sometimes in Swift when the mood strikes.
-                    </span>
+                    <span class="mono meta-kicker">{t.asideKicker}</span>
+                    <span class="meta-text">{t.asideText}</span>
                 </p>
 
-                <a href="/freelance" class="freelance-sticker">
+                <a href={localizeHref('/freelance', locale)} class="freelance-sticker">
                     <span class="freelance-sticker-burst" aria-hidden="true"></span>
                     <span class="freelance-sticker-inner">
                         <LucideIcon name="sparkles" size={16} />
-                        <span class="mono">Hire me on the side</span>
+                        <span class="mono">{t.freelanceCta}</span>
                         <LucideIcon name="arrow-up-right" size={16} />
                     </span>
                 </a>
             </div>
         </div>
 
-        <a href="#cards" class="scroll-hint fade-in" aria-label="Scroll to selected work">
-            <span class="scroll-handwritten">scroll if you're nosy</span>
+        <a href="#cards" class="scroll-hint fade-in" aria-label={t.scrollAria}>
+            <span class="scroll-handwritten">{t.scrollHint}</span>
             <svg
                 class="scroll-arrow"
                 viewBox="0 0 60 40"

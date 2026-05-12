@@ -2,18 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import Intro from '../components/Intro.astro';
 import ProjectCardList from '../components/ProjectCardList.astro';
+import { getLocale } from '../i18n/utils';
+import { getDictionary } from '../i18n/ui';
+
+const locale = getLocale(Astro);
+const meta = (await getDictionary(locale)).meta.home;
 ---
 
-<Layout
-    title="Jan Kessler — Software Engineer"
-    description="Jan Kessler is a software developer based in Villingen-Schwenningen, Germany."
-    image="/logo.png"
-    canonicalURL={Astro.site}
->
+<Layout title={meta.title} description={meta.description} image="/logo.png">
     <main>
         <Intro />
         <ProjectCardList />
     </main>
 </Layout>
-
-<style></style>

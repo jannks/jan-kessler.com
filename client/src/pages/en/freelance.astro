@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import FreelanceContent from '../components/FreelanceContent.astro';
-import { getLocale } from '../i18n/utils';
-import { getDictionary } from '../i18n/ui';
+import Layout from '../../layouts/Layout.astro';
+import FreelanceContent from '../../components/FreelanceContent.astro';
+import { getLocale } from '../../i18n/utils';
+import { getDictionary } from '../../i18n/ui';
 
 const locale = getLocale(Astro);
 const meta = (await getDictionary(locale)).meta.freelance;

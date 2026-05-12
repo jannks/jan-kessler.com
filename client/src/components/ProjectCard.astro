@@ -1,5 +1,5 @@
 ---
-import type { Project } from '../types/payload-types';
+import type { Project } from '@payload-types';
 import { serialize } from '../utils/slate-text.converter';
 import Chip from './Chip.astro';
 import LucideIcon from './LucideIcon.astro';
@@ -7,9 +7,10 @@ import LucideIcon from './LucideIcon.astro';
 interface Props {
     project: Project;
     index: number;
+    stampLabel: string;
 }
 
-const { project, index } = Astro.props;
+const { project, index, stampLabel } = Astro.props;
 
 const palette = [
     'var(--card-1)',
@@ -23,10 +24,8 @@ const tapeColors = [
     'var(--card-1)',
     'var(--card-2)',
 ];
-const stampLabels = ['shipped', 'live', 'in prod', 'still up'];
 const cardBg = palette[index % palette.length];
 const tapeBg = tapeColors[index % tapeColors.length];
-const stampLabel = stampLabels[index % stampLabels.length];
 const tilt = index % 2 === 0 ? -1.2 : 1.2;
 const tapeTilt = index % 2 === 0 ? -8 : 6;
 const cardNumber = String(index + 1).padStart(2, '0');

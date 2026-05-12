@@ -14,7 +14,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    site: Site;
+    'home-page': HomePage;
+    'freelance-page': FreelancePage;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -149,8 +153,127 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-
-
-declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site".
+ */
+export interface Site {
+  id: string;
+  nav: {
+    freelance: string;
+    github: string;
+    languageAria: string;
+  };
+  footer: {
+    text: string;
+  };
+  stack?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: string;
+  meta: {
+    title: string;
+    description: string;
+  };
+  intro: {
+    status: string;
+    polaroidAlt: string;
+    polaroidCaption: string;
+    currentlyKicker: string;
+    currentlyRole: string;
+    currentlySuffix: string;
+    currentlyAt: string;
+    asideKicker: string;
+    asideText: string;
+    freelanceCta: string;
+    scrollHint: string;
+    scrollAria: string;
+  };
+  projects: {
+    chapterTag: string;
+    titlePrefix: string;
+    titleItalic: string;
+    titleMarker: string;
+    ledePrefix: string;
+    ledeStrike: string;
+    ledeItalic: string;
+    stamps?:
+      | {
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "freelance-page".
+ */
+export interface FreelancePage {
+  id: string;
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    availabilityTag: string;
+    titleLine1: string;
+    titleScript: string;
+    titleLine3: string;
+    pitchPrefix: string;
+    pitchMarker: string;
+    pitchSuffix: string;
+    pitchItalic: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    availableLabel: string;
+    availableSub: string;
+    basedInKicker: string;
+    basedInValue: string;
+    workingWithKicker: string;
+    workingWithValue: string;
+    replyTimeKicker: string;
+    replyTimeValue: string;
+  };
+  chapter01: {
+    tag: string;
+    titlePrefix: string;
+    titleMarker: string;
+    titleSuffix: string;
+    services?:
+      | {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  chapter02: {
+    tag: string;
+    titlePrefix: string;
+    titleScript: string;
+    titleSuffix: string;
+    lede: string;
+  };
+  chapter03: {
+    tag: string;
+    titlePrefix: string;
+    titleMarker: string;
+    text: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }

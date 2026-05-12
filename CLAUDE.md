@@ -9,7 +9,7 @@ This is a two-package monorepo (no workspace tooling — each package is managed
 - `client/` — Astro 4 site (SSR via `@astrojs/node` standalone adapter), uses **npm**.
 - `server/` — Payload CMS 2 (Express + MongoDB via `@payloadcms/db-mongodb`), uses **yarn**.
 
-The client fetches content from the server's REST API at build/render time. Payload-generated TypeScript types are shared by being copied into `client/src/types/payload-types.ts` (mirror of `server/src/payload-types.ts` produced by `payload generate:types`). When the Payload schema changes, regenerate types in `server/` and copy the file across.
+The client fetches content from the server's REST API at build/render time. Payload-generated TypeScript types live at `server/src/payload-types.ts` and are imported from the client via the `@payload-types` path alias (configured in `client/tsconfig.json`) — no copy step. The server's `typescript.declare: false` keeps the generated file free of the `declare module 'payload'` augmentation, so the client can consume it without depending on the `payload` package. When the Payload schema changes, run `yarn generate:types` in `server/` and the client sees the new types automatically.
 
 ## Common Commands
 
@@ -24,7 +24,7 @@ The client fetches content from the server's REST API at build/render time. Payl
 - `docker-compose up` — Spins up Payload + a MongoDB container; uses the project's `.env`.
 - `yarn build` — `copyfiles` → `payload build` (admin bundle) → `tsc`. Output in `dist/`.
 - `yarn serve` — Runs the production build (`NODE_ENV=production node dist/server.js`).
-- `yarn generate:types` — Regenerate `src/payload-types.ts` from the Payload config. **Remember to copy the result into `client/src/types/payload-types.ts`**.
+- `yarn generate:types` — Regenerate `src/payload-types.ts` from the Payload config. The client picks it up automatically via the `@payload-types` path alias.
 - `yarn generate:graphQLSchema` — Regenerate `src/generated-schema.graphql`.
 
 There are no test scripts in either package.
@@ -32,8 +32,9 @@ There are no test scripts in either package.
 ## Architecture Notes
 
 ### Content flow
-- Payload exposes collections `users`, `projects`, `media` (see `server/src/collections/`). Only `projects` and `media` have public read access; the admin user collection is auth-only.
+- Payload exposes collections `users`, `projects`, `media` (see `server/src/collections/`) and globals `site`, `home-page`, `freelance-page` (see `server/src/globals/`). Only `projects`, `media` and the three globals have public read access; the admin user collection is auth-only.
 - The client reads projects via `fetch(\`${API_URL}/api/projects?depth=1&sort=createdAt\`)` inside `.astro` frontmatter (e.g. `client/src/components/ProjectCardList.astro`). `API_URL` resolves from `import.meta.env.API_URL ?? process.env.API_URL` so it works in both dev and the Node SSR runtime.
+- All UI strings live in the three globals and are fetched per request by `client/src/i18n/ui.ts` (`getDictionary(locale)` — async, per-locale 30s in-memory cache). `server/src/globals/seed.ts` seeds DE/EN defaults on first boot via `onInit` if a global is still empty.
 - Rich-text `description` fields are Slate JSON; rendering goes through `client/src/utils/slate-text.converter.ts`. Media URLs are rewritten with the `MEDIA_PREFIX` env var.
 
 ### Astro specifics

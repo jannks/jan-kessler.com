@@ -14,11 +14,13 @@ const Projects: CollectionConfig = {
             name: 'title',
             type: 'text',
             required: true,
+            localized: true,
         },
         {
             name: 'description',
             type: 'richText',
             required: true,
+            localized: true,
         },
         {
             name: 'projectUrl',
@@ -60,6 +62,7 @@ const Projects: CollectionConfig = {
             name: 'role',
             type: 'text',
             required: true,
+            localized: true,
         },
         {
             name: 'technologies',

@@ -7,8 +7,8 @@ type CustomText = BaseText & {
     italic?: boolean;
 };
 
-export const serialize = (children: any[]): string =>
-    children
+export const serialize = (children: any[] | null | undefined): string =>
+    (children ?? [])
         .map((node) => {
             if (Text.isText(node)) {
                 let text = escapeHTML(node.text);

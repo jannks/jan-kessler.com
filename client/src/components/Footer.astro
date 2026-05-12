@@ -1,12 +1,18 @@
 ---
+import { getLocale } from '../i18n/utils';
+import { getDictionary } from '../i18n/ui';
+
 const year = new Date().getFullYear();
+const locale = getLocale(Astro);
+const dict = await getDictionary(locale);
+const text = dict.footer.text.replace('{year}', String(year));
 ---
 
 <footer>
     <div class="container">
         <div class="badge mono">
             <span class="dot" aria-hidden="true"></span>
-            <span>© {year} · Made with too much coffee in Villingen-Schwenningen</span>
+            <span>{text}</span>
             <svg
                 class="heart"
                 viewBox="0 0 24 24"
