@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import LucideIcon from './LucideIcon.astro';
 import { getLocale, localizeHref } from '../i18n/utils';
 import { getDictionary } from '../i18n/ui';
+import portraitImage from '../assets/portrait.webp';
 
 const locale = getLocale(Astro);
 const dict = await getDictionary(locale);
@@ -46,12 +48,14 @@ const t = dict.intro;
             <div class="polaroid fade-in" aria-hidden="false">
                 <span class="tape tape-tl" aria-hidden="true"></span>
                 <span class="tape tape-br" aria-hidden="true"></span>
-                <img
-                    src="/portrait.webp"
+                <Image
+                    src={portraitImage}
                     alt={t.polaroidAlt}
-                    width="320"
-                    height="320"
+                    widths={[176, 352, 528]}
+                    sizes="(min-width: 768px) 11rem, 9rem"
+                    quality={90}
                     loading="eager"
+                    fetchpriority="high"
                 />
                 <span class="polaroid-caption mono">{t.polaroidCaption}</span>
             </div>
