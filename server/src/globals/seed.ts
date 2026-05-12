@@ -5,9 +5,13 @@ type Locale = 'de' | 'en';
 const siteSeed: Record<Locale, any> = {
     de: {
         nav: {
-            freelance: 'Freelance',
-            github: 'GitHub',
+            links: [{ label: 'Freelance', href: '/freelance' }],
+            socials: [
+                { platform: 'github', href: 'https://github.com/jannks' },
+            ],
             languageAria: 'Sprache wechseln',
+            menuOpenAria: 'Menü öffnen',
+            menuCloseAria: 'Menü schließen',
         },
         footer: {
             text: '© {year}',
@@ -15,9 +19,13 @@ const siteSeed: Record<Locale, any> = {
     },
     en: {
         nav: {
-            freelance: 'Freelance',
-            github: 'GitHub',
+            links: [{ label: 'Freelance', href: '/freelance' }],
+            socials: [
+                { platform: 'github', href: 'https://github.com/jannks' },
+            ],
             languageAria: 'Switch language',
+            menuOpenAria: 'Open menu',
+            menuCloseAria: 'Close menu',
         },
         footer: {
             text: '© {year}',

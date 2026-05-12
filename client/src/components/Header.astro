@@ -8,6 +8,16 @@ import { localizeHref } from '../i18n/utils';
 
 const locale = getLocale(Astro);
 const dict = await getDictionary(locale);
+const links = dict.nav.links ?? [];
+const socials = dict.nav.socials ?? [];
+const isExternal = (href: string): boolean => /^https?:\/\//.test(href);
+const resolveHref = (href: string): string =>
+    isExternal(href) ? href : localizeHref(href, locale);
+
+const SOCIAL_LABELS: Record<string, string> = {
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+};
 ---
 
 <header>
@@ -27,24 +37,151 @@ const dict = await getDictionary(locale);
                 </svg>
             </a>
             <div class="actions">
-                <a href={localizeHref('/freelance', locale)} class="nav-link">
-                    {dict.nav.freelance}
-                </a>
-                <a
-                    href="https://github.com/jannks"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="icon-button"
-                    aria-label={dict.nav.github}
-                >
-                    <LucideIcon name="github" size={20} />
-                </a>
+                <div class="desktop-nav">
+                    {
+                        links.map((link) => {
+                            const href = resolveHref(link.href);
+                            const external = isExternal(link.href);
+                            return (
+                                <a
+                                    href={href}
+                                    target={external ? '_blank' : undefined}
+                                    rel={external ? 'noopener noreferrer' : undefined}
+                                    class="nav-link"
+                                >
+                                    {link.label}
+                                </a>
+                            );
+                        })
+                    }
+                    {
+                        socials.map((social) => {
+                            const label = SOCIAL_LABELS[social.platform];
+                            return (
+                                <a
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="icon-button"
+                                    aria-label={label}
+                                >
+                                    <LucideIcon name={social.platform} size={20} />
+                                </a>
+                            );
+                        })
+                    }
+                </div>
                 <LanguageSwitcher />
                 <ThemeIcon />
+                <button
+                    type="button"
+                    class="burger"
+                    aria-label={dict.nav.menuOpenAria}
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    data-menu-toggle
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
             </div>
         </div>
     </nav>
+
+    <div
+        id="mobile-menu"
+        class="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label={dict.nav.menuOpenAria}
+        hidden
+        data-menu
+    >
+        <ul class="mobile-menu-list">
+            {
+                links.map((link) => {
+                    const href = resolveHref(link.href);
+                    const external = isExternal(link.href);
+                    return (
+                        <li>
+                            <a
+                                href={href}
+                                target={external ? '_blank' : undefined}
+                                rel={external ? 'noopener noreferrer' : undefined}
+                                class="mobile-link"
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        {
+            socials.length > 0 && (
+                <div class="mobile-socials">
+                    {socials.map((social) => {
+                        const label = SOCIAL_LABELS[social.platform];
+                        return (
+                            <a
+                                href={social.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="icon-button"
+                                aria-label={label}
+                            >
+                                <LucideIcon name={social.platform} size={20} />
+                            </a>
+                        );
+                    })}
+                </div>
+            )
+        }
+    </div>
 </header>
+
+<script
+    is:inline
+    define:vars={{
+        openLabel: dict.nav.menuOpenAria,
+        closeLabel: dict.nav.menuCloseAria,
+    }}
+>
+    (() => {
+        const toggle = document.querySelector('[data-menu-toggle]');
+        const menu = document.querySelector('[data-menu]');
+        if (!toggle || !menu) return;
+
+        const setOpen = (open) => {
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? closeLabel : openLabel);
+            toggle.classList.toggle('is-open', open);
+            menu.toggleAttribute('hidden', !open);
+            document.body.classList.toggle('menu-open', open);
+        };
+
+        toggle.addEventListener('click', () => {
+            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+        });
+
+        menu.addEventListener('click', (event) => {
+            if (event.target instanceof HTMLAnchorElement) {
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (
+                event.key === 'Escape' &&
+                toggle.getAttribute('aria-expanded') === 'true'
+            ) {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+    })();
+</script>
 
 <style>
     header {
@@ -104,6 +241,12 @@ const dict = await getDictionary(locale);
         gap: 0.5rem;
     }
 
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
     .nav-link {
         font-family: var(--font-mono);
         font-weight: 500;
@@ -123,12 +266,6 @@ const dict = await getDictionary(locale);
         background: var(--accent);
         color: #ffffff;
         transform: rotate(-2deg);
-    }
-
-    @media (max-width: 480px) {
-        .nav-link {
-            display: none;
-        }
     }
 
     .icon-button {
@@ -151,5 +288,114 @@ const dict = await getDictionary(locale);
         background: var(--accent);
         color: #ffffff;
         transform: translate(-1px, -1px) rotate(-4deg);
+    }
+
+    .burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition:
+            background 0.15s ease,
+            color 0.15s ease,
+            transform 0.15s ease;
+    }
+
+    .burger:hover {
+        background: var(--accent);
+        color: #ffffff;
+        transform: translate(-1px, -1px) rotate(-4deg);
+    }
+
+    .burger span {
+        display: block;
+        width: 1.1rem;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .burger.is-open span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .burger.is-open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.is-open span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 1rem;
+        right: 1rem;
+        background: var(--surface);
+        border: 2px solid var(--border);
+        border-radius: 0.75rem;
+        box-shadow: 4px 4px 0 0 var(--shadow);
+        padding: 0.75rem;
+        z-index: 49;
+    }
+
+    .mobile-menu[hidden] {
+        display: none;
+    }
+
+    .mobile-menu-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .mobile-link {
+        display: block;
+        padding: 0.75rem 0.875rem;
+        font-family: var(--font-mono);
+        font-weight: 500;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink);
+        border-radius: 0.5rem;
+        transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .mobile-link:hover {
+        background: var(--accent);
+        color: #ffffff;
+    }
+
+    .mobile-socials {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem 0.875rem 0.25rem;
+        margin-top: 0.5rem;
+        border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+        .desktop-nav {
+            display: none;
+        }
+
+        .burger {
+            display: inline-flex;
+        }
     }
 </style>

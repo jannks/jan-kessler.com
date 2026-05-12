@@ -10,10 +10,59 @@ const Site: GlobalConfig = {
             name: 'nav',
             type: 'group',
             fields: [
-                { name: 'freelance', type: 'text', required: true, localized: true },
-                { name: 'github', type: 'text', required: true, localized: true },
+                {
+                    name: 'links',
+                    type: 'array',
+                    labels: { singular: 'Nav Link', plural: 'Nav Links' },
+                    admin: {
+                        description:
+                            'Textuelle Menüpunkte (z.B. Freelance). Werden als Text gerendert.',
+                    },
+                    fields: [
+                        {
+                            name: 'label',
+                            type: 'text',
+                            required: true,
+                            localized: true,
+                        },
+                        { name: 'href', type: 'text', required: true },
+                    ],
+                },
+                {
+                    name: 'socials',
+                    type: 'array',
+                    labels: { singular: 'Social Link', plural: 'Social Links' },
+                    admin: {
+                        description:
+                            'Social-Profile (werden als Icon gerendert).',
+                    },
+                    fields: [
+                        {
+                            name: 'platform',
+                            type: 'select',
+                            required: true,
+                            options: [
+                                { label: 'GitHub', value: 'github' },
+                                { label: 'LinkedIn', value: 'linkedin' },
+                            ],
+                        },
+                        { name: 'href', type: 'text', required: true },
+                    ],
+                },
                 {
                     name: 'languageAria',
+                    type: 'text',
+                    required: true,
+                    localized: true,
+                },
+                {
+                    name: 'menuOpenAria',
+                    type: 'text',
+                    required: true,
+                    localized: true,
+                },
+                {
+                    name: 'menuCloseAria',
                     type: 'text',
                     required: true,
                     localized: true,

@@ -157,9 +157,23 @@ export interface PayloadMigration {
 export interface Site {
   id: string;
   nav: {
-    freelance: string;
-    github: string;
+    links?:
+      | {
+          label: string;
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
+    socials?:
+      | {
+          platform: 'github' | 'linkedin';
+          href: string;
+          id?: string | null;
+        }[]
+      | null;
     languageAria: string;
+    menuOpenAria: string;
+    menuCloseAria: string;
   };
   footer: {
     text: string;
